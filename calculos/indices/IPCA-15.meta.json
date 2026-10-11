@@ -1,0 +1,10 @@
+{
+  "indice": "IPCA-15",
+  "fonte": "IPCA-15, variação % mensal (IBGE); API SGS série 7478",
+  "url": "https://api.bcb.gov.br/dados/serie/bcdata.sgs.7478/dados?formato=json&dataInicial=...&dataFinal=...",
+  "meses": 317,
+  "primeiro": "2000-05",
+  "ultimo": "2026-09",
+  "baixado_em": "2026-10-11T13:30:06-03:00",
+  "sha256": "65c7643b662835e99f27a16622786409a42a376ce82f1050da4061d8a9e0c7c9"
+}

@@ -1,0 +1,10 @@
+{
+  "indice": "IPCA",
+  "fonte": "IPCA, variação % mensal (IBGE); API SGS série 433",
+  "url": "https://api.bcb.gov.br/dados/serie/bcdata.sgs.433/dados?formato=json&dataInicial=...&dataFinal=...",
+  "meses": 561,
+  "primeiro": "1980-01",
+  "ultimo": "2026-09",
+  "baixado_em": "2026-10-11T13:29:54-03:00",
+  "sha256": "3b56a0500d37d9621d3c3994dc6233bc6a7becae997abeb1ea6779de51b596cf"
+}

@@ -1,0 +1,261 @@
+{
+ "nota": "30 perguntas reais da rotina de uma contadoria. 'esperado' = ids que precisam aparecer nas fontes citadas; 'resposta_contem' = trechos que a resposta precisa conter (conferidos contra a norma). Revisão humana: Tatiana Tenorio (CRC/AL 008267/O-9).",
+ "perguntas": [
+  {
+   "q": "Qual a alíquota de ISS em Maceió para programação de software?",
+   "esperado": [
+    "mcz:0102010"
+   ],
+   "resposta_contem": [
+    "2"
+   ]
+  },
+  {
+   "q": "Qual a alíquota de ISS em Maceió para análise e desenvolvimento de sistemas?",
+   "esperado": [
+    "mcz:0101"
+   ],
+   "resposta_contem": []
+  },
+  {
+   "q": "Em qual subitem da LC 116 se enquadra consultoria em tecnologia da informação?",
+   "esperado": [
+    "lc116:1.06"
+   ],
+   "resposta_contem": [
+    "1.06"
+   ]
+  },
+  {
+   "q": "Em qual subitem da LC 116 se enquadra licenciamento de programas de computador?",
+   "esperado": [
+    "lc116:1.05"
+   ],
+   "resposta_contem": [
+    "1.05"
+   ]
+  },
+  {
+   "q": "Serviço exportado para o exterior paga ISS?",
+   "esperado": [
+    "lei:lc116|lei:cf88"
+   ],
+   "resposta_contem": []
+  },
+  {
+   "q": "Qual item da LC 116 cobre serviços de medicina e consulta médica?",
+   "esperado": [
+    "lc116:4.01"
+   ],
+   "resposta_contem": [
+    "4.01"
+   ]
+  },
+  {
+   "q": "Fisioterapia está em qual subitem da LC 116?",
+   "esperado": [
+    "lc116:4.08"
+   ],
+   "resposta_contem": [
+    "4.08"
+   ]
+  },
+  {
+   "q": "Em qual subitem da LC 116 entra execução de obra de construção civil por empreitada?",
+   "esperado": [
+    "lc116:7.02"
+   ],
+   "resposta_contem": [
+    "7.02"
+   ]
+  },
+  {
+   "q": "Qual o código de ISS em São Paulo para empreitada de obra hidráulica?",
+   "esperado": [
+    "sp:01015"
+   ],
+   "resposta_contem": [
+    "01015"
+   ]
+  },
+  {
+   "q": "Qual a alíquota de ISS em São Paulo para construção civil por empreitada?",
+   "esperado": [
+    "sp:01015|sp:01113"
+   ],
+   "resposta_contem": [
+    "5"
+   ]
+  },
+  {
+   "q": "Serviços de engenharia e agronomia estão em qual item da LC 116?",
+   "esperado": [
+    "lc116:7.01"
+   ],
+   "resposta_contem": [
+    "7.01"
+   ]
+  },
+  {
+   "q": "Qual subitem da LC 116 cobre contabilidade e auditoria?",
+   "esperado": [
+    "lc116:17.19"
+   ],
+   "resposta_contem": [
+    "17.19"
+   ]
+  },
+  {
+   "q": "Assessoria e consultoria empresarial: qual subitem da LC 116?",
+   "esperado": [
+    "lc116:17.01"
+   ],
+   "resposta_contem": [
+    "17.01"
+   ]
+  },
+  {
+   "q": "Qual a alíquota de ISS em Maceió para serviços de contabilidade?",
+   "esperado": [
+    "mcz:6920601"
+   ],
+   "resposta_contem": []
+  },
+  {
+   "q": "Advocacia está em qual subitem da LC 116?",
+   "esperado": [
+    "lc116:17.14"
+   ],
+   "resposta_contem": [
+    "17.14"
+   ]
+  },
+  {
+   "q": "Ensino regular e cursos: qual item da LC 116?",
+   "esperado": [
+    "lc116:8.01"
+   ],
+   "resposta_contem": [
+    "8.01"
+   ]
+  },
+  {
+   "q": "Hospedagem em hotel está na lista da LC 116? Qual subitem?",
+   "esperado": [
+    "lc116:9.01"
+   ],
+   "resposta_contem": [
+    "9.01"
+   ]
+  },
+  {
+   "q": "Transporte municipal de passageiros: qual subitem da LC 116?",
+   "esperado": [
+    "lc116:16.01"
+   ],
+   "resposta_contem": [
+    "16.01"
+   ]
+  },
+  {
+   "q": "Qual subitem da LC 116 cobre propaganda e publicidade?",
+   "esperado": [
+    "lc116:17.06"
+   ],
+   "resposta_contem": [
+    "17.06"
+   ]
+  },
+  {
+   "q": "Limpeza e conservação de imóveis: qual subitem da LC 116?",
+   "esperado": [
+    "lc116:7.10"
+   ],
+   "resposta_contem": [
+    "7.10"
+   ]
+  },
+  {
+   "q": "Vigilância e segurança: qual subitem da LC 116?",
+   "esperado": [
+    "lc116:11.02"
+   ],
+   "resposta_contem": [
+    "11.02"
+   ]
+  },
+  {
+   "q": "Qual a lei que institui o Simples Nacional?",
+   "esperado": [
+    "lei:lc123"
+   ],
+   "resposta_contem": [
+    "123"
+   ]
+  },
+  {
+   "q": "Qual lei complementar instituiu o IBS e a CBS na reforma tributária?",
+   "esperado": [
+    "lei:lc214"
+   ],
+   "resposta_contem": [
+    "214"
+   ]
+  },
+  {
+   "q": "Qual emenda constitucional aprovou a reforma tributária do consumo?",
+   "esperado": [
+    "lei:ec132"
+   ],
+   "resposta_contem": [
+    "132"
+   ]
+  },
+  {
+   "q": "Qual a alíquota mínima de ISS permitida pela Constituição e pela LC 116?",
+   "esperado": [
+    "lei:lc157|lei:lc116"
+   ],
+   "resposta_contem": [
+    "2%"
+   ]
+  },
+  {
+   "q": "Onde o ISS é devido no caso de construção civil?",
+   "esperado": [
+    "lei:lc116|lc116:7.02"
+   ],
+   "resposta_contem": []
+  },
+  {
+   "q": "Serviços de informática importados do exterior pagam ISS?",
+   "esperado": [
+    "lei:lc116|lc116:01"
+   ],
+   "resposta_contem": []
+  },
+  {
+   "q": "Qual a alíquota de ISS em Maceió para serviços de engenharia?",
+   "esperado": [
+    "mcz:0703|mcz:7112"
+   ],
+   "resposta_contem": []
+  },
+  {
+   "q": "Clínica de estética: qual subitem da LC 116 e alíquota em Maceió?",
+   "esperado": [
+    "lc116:6.02|mcz:9602502"
+   ],
+   "resposta_contem": [
+    "6.02"
+   ]
+  },
+  {
+   "q": "Qual o prazo e a base legal da retenção de ISS pelo tomador?",
+   "esperado": [
+    "lei:lc116"
+   ],
+   "resposta_contem": []
+  }
+ ]
+}

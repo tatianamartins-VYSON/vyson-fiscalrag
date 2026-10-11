@@ -1,0 +1,10 @@
+{
+  "indice": "INPC",
+  "fonte": "INPC, variação % mensal (IBGE); API SGS série 188",
+  "url": "https://api.bcb.gov.br/dados/serie/bcdata.sgs.188/dados?formato=json&dataInicial=...&dataFinal=...",
+  "meses": 570,
+  "primeiro": "1979-04",
+  "ultimo": "2026-09",
+  "baixado_em": "2026-10-11T13:30:00-03:00",
+  "sha256": "0f2fa8cd15e03951e3c8807f28ecafcb3e4c9de16ee92843a871d62654f090ba"
+}

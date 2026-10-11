@@ -1,0 +1,372 @@
+<!doctype html>
+<html lang="pt-BR" translate="no" class="notranslate">
+<head>
+<meta charset="utf-8">
+<meta name="theme-color" content="#07132b">
+<meta name="google" content="notranslate">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Playfair+Display:wght@600;700&display=swap" rel="stylesheet">
+<base href="/fiscal/">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Vyson Fiscal · Guia Tributário por Serviço</title>
+<meta name="description" content="Guia tributário por serviço (Simples Nacional, Lucro Presumido e Lucro Real), consulta LC 116, simulador de tributos e auditor de XML da NFS-e Nacional com IBS e CBS.">
+<style>
+:root{--bg:#07132b;--card:#0e1f45;--ink:#ffffff;--mut:#c9d4ea;--line:#1e3566;--brand:#0047ab;--acc:#ff6b00;--acc2:#2a1a0a;--ok:#5fd3a5;--okbg:#10332a;--warn:#ffb020;--warnbg:#3a2a0a;--err:#ff8b80;--errbg:#3d1a17;--info:#ffa500;--infobg:#2a1a0a;color-scheme:dark}
+*{box-sizing:border-box}
+body{margin:0;color:var(--ink);font:15px/1.6 Inter,system-ui,-apple-system,"Segoe UI",Roboto,Arial,sans-serif;background:radial-gradient(1200px 600px at 10% -10%,#0d2f7a 0%,transparent 60%),radial-gradient(900px 500px at 100% 0%,#3a1a00 0%,transparent 55%),var(--bg);min-height:100vh}
+header{background:var(--brand);color:#fff;padding:22px 16px}
+header{background:linear-gradient(100deg,#0047ab 0%,#0a1f4d 55%,#07132b 100%);border-bottom:1px solid rgba(255,140,0,.35);box-shadow:0 10px 40px rgba(0,0,0,.45)}
+.wrap{max-width:1100px;margin:0 auto;padding:0 16px}
+header .wrap{padding:0}
+h1{margin:0;font:700 26px/1.2 "Playfair Display",Georgia,serif;letter-spacing:.3px;color:#fff}h1 span{color:#ff8c00}
+header p{margin:4px 0 0;opacity:.85;font-size:13px}
+main{padding:20px 0 40px}
+.tabs{display:flex;gap:6px;border-bottom:1px solid var(--line);margin-bottom:16px;flex-wrap:wrap}
+.tab{padding:8px 14px;border:0;background:none;color:var(--mut);font:inherit;font-weight:600;cursor:pointer;border-bottom:3px solid transparent}
+.tab[aria-selected=true]{color:#ffa500;border-image:linear-gradient(90deg,#ff6b00,#ffa500) 1}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(230px,1fr));gap:12px;margin-bottom:22px}
+.tool{background:linear-gradient(160deg,rgba(255,255,255,.06),rgba(255,255,255,.02));backdrop-filter:blur(8px);border:1px solid rgba(255,255,255,.1);border-radius:16px;padding:18px;text-align:left;cursor:pointer;font:inherit;color:var(--ink);display:flex;flex-direction:column;gap:6px;min-height:120px;box-shadow:0 8px 30px rgba(0,0,0,.35);transition:transform .2s,box-shadow .2s,border-color .2s}
+.tool:hover{transform:translateY(-3px);border-color:rgba(255,140,0,.6)}.tool[aria-pressed=true]{border-color:var(--acc);box-shadow:0 0 0 1px var(--acc),0 12px 40px rgba(255,107,0,.25)}
+.tool b{font-size:15px;color:#ff8c00}.tool span{color:var(--mut);font-size:13px}
+.tool[disabled]{opacity:.55;cursor:not-allowed}
+.tag{display:inline-block;font-size:11px;font-weight:700;padding:2px 10px;border-radius:99px;background:linear-gradient(90deg,#ff6b00,#ffa500);color:#fff;letter-spacing:.3px;width:fit-content}
+.panel{background:linear-gradient(180deg,rgba(14,31,69,.95),rgba(9,20,48,.95));border:1px solid rgba(255,255,255,.1);border-radius:18px;padding:24px;box-shadow:0 20px 60px rgba(0,0,0,.45)}
+.panel h2{margin:0 0 4px;font:700 22px/1.2 "Playfair Display",Georgia,serif;color:#ff8c00}.sub{color:var(--mut);font-size:13px;margin:0 0 14px}
+label{display:block;font-size:12px;font-weight:700;color:#ffa500;margin:0 0 3px;text-transform:uppercase;letter-spacing:.3px}
+input,select,textarea{width:100%;padding:10px 12px;border:1px solid rgba(255,255,255,.12);border-radius:10px;background:rgba(3,10,30,.8);color:#fff;font:inherit;transition:border-color .15s}input:hover,select:hover{border-color:rgba(255,140,0,.5)}input:focus,select:focus{outline:2px solid var(--acc)}
+textarea{min-height:150px;font:12px/1.4 ui-monospace,Consolas,monospace}
+.row{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:12px;margin-bottom:12px}
+button.go{background:linear-gradient(90deg,#ff6b00,#ffa500);color:#fff;border:0;border-radius:10px;padding:11px 18px;font:inherit;font-weight:700;cursor:pointer;box-shadow:0 8px 24px rgba(255,107,0,.35);transition:transform .15s}button.go:hover{transform:translateY(-1px)}
+button.go{color:#fff}
+table{width:100%;border-collapse:collapse;font-size:13px}
+th,td{padding:7px 8px;border-bottom:1px solid var(--line);text-align:left;vertical-align:top}
+th{color:#ffa500;font-size:11px;text-transform:uppercase;letter-spacing:.5px}
+td.n,th.n{text-align:right;font-variant-numeric:tabular-nums}
+tr.click{cursor:pointer}tr.click:hover{background:var(--acc2)}
+.box{border:1px solid rgba(255,255,255,.08);border-left:3px solid #ff6b00;border-radius:12px;padding:16px;margin-top:14px;background:rgba(255,255,255,.025)}
+.box h3{margin:0 0 6px;font-size:14px;color:#ffa500}
+.pill{display:inline-block;padding:1px 8px;border-radius:99px;font-size:12px;font-weight:700;margin-right:4px}
+.ok{background:var(--okbg);color:var(--ok)}.warn{background:var(--warnbg);color:var(--warn)}.err{background:var(--errbg);color:var(--err)}.info{background:var(--infobg);color:var(--info)}
+.f{display:flex;gap:8px;align-items:flex-start;padding:6px 0;border-bottom:1px dashed var(--line)}
+.kv{display:grid;grid-template-columns:minmax(140px,220px) 1fr;gap:4px 12px;font-size:13px}.kv div:nth-child(odd){color:var(--mut)}
+.scroll{overflow-x:auto}
+.note{font-size:12px;color:var(--mut);margin-top:10px}
+footer{color:var(--mut);font-size:12px;padding:0 0 30px}
+code{background:var(--acc2);color:var(--acc);padding:1px 5px;border-radius:5px;font-size:12px}
+.hide{display:none}
+.wiz h2{font:700 24px/1.2 "Playfair Display",Georgia,serif;color:#ff8c00;margin:0 0 4px}.wopts{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:12px;margin:14px 0 6px}.wopts button{text-align:left;background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.15);border-radius:14px;padding:18px;color:#fff;font:inherit;cursor:pointer;display:flex;flex-direction:column;gap:6px;transition:border-color .15s,transform .15s}.wopts button:hover{border-color:#ff8c00;transform:translateY(-2px)}.wopts button b{color:#ffa500;font-size:17px}.wopts button span{font-size:13px;color:#c9d4ea}
+.chips{display:flex;flex-wrap:wrap;gap:8px;margin:10px 0}.chips button{background:rgba(255,107,0,.12);border:1px solid rgba(255,140,0,.4);color:#fff;border-radius:99px;padding:7px 14px;font:inherit;font-size:13px;cursor:pointer}.chips button:hover{background:#ff6b00}
+.chips button.on{background:#ff6b00;border-color:#ff6b00}.chips small{align-self:center;color:var(--mut)}
+.timeline{position:relative;padding-left:18px;border-left:2px solid rgba(255,140,0,.35);margin-top:8px}.lei-ano{position:relative;margin:18px 0 4px}.lei-ano span{display:inline-block;background:linear-gradient(90deg,#ff6b00,#ffa500);color:#fff;font-weight:700;font-size:12px;padding:2px 10px;border-radius:99px}.lei-ano::before{content:"";position:absolute;left:-24px;top:7px;width:10px;height:10px;border-radius:50%;background:#ff6b00;box-shadow:0 0 0 3px var(--bg)}
+.lei .lei-top{display:flex;justify-content:space-between;gap:10px;flex-wrap:wrap}.lei .lei-top small{color:var(--mut)}.lei h3{font-size:15px;margin:2px 0 4px}.lei-em{margin:4px 0 10px;font-size:13px}.lei-casos{margin:0;padding-left:16px}.lei-link a{color:#ffa500;font-weight:600}.lei.hl{box-shadow:0 0 0 2px #ff6b00;background:rgba(255,107,0,.08)}.lt{cursor:pointer;border:0;font:inherit}
+a.lref{color:#ffa500;text-decoration:underline dotted;cursor:pointer}a.lref.vig::after{content:" ✓";font-size:10px;color:var(--ok)}a.lref.rev::after{content:" ✗";font-size:10px;color:var(--err)}a.lref:hover{color:#fff}
+@media print{.timeline{border:0;padding:0}.lei-ano::before{display:none}}
+.pq{border:1px solid rgba(255,140,0,.45);border-radius:14px;padding:18px 20px;margin:12px 0;background:rgba(255,107,0,.06)}.pq h3{margin:4px 0 4px;font-size:18px;color:#fff}.pq small{color:#ffa500;font-weight:700;letter-spacing:.5px}.pq .pq-body input{max-width:260px}.pq .wopts{margin:8px 0}.pq .wopts button.on{background:#ff6b00;border-color:#ff6b00;color:#fff}.pq-nav{margin:12px 0 0}.pq-nav a{color:var(--mut);margin-left:6px}.modo-ficha #gperg{display:none}
+details.opt{margin:4px 0 12px}details.opt>summary{cursor:pointer;color:#c9d4ea;font-size:13px;list-style:none}details.opt>summary::before{content:"⚙ "}details.opt .row{margin-top:10px}
+.modo-ficha .ess{display:none}
+.modo{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:12px;margin:0 0 16px}.modo button{text-align:left;background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.15);border-radius:14px;padding:14px 16px;color:#fff;font:inherit;cursor:pointer;display:flex;flex-direction:column;gap:4px;transition:border-color .15s,background .15s}.modo button b{color:#ffa500;font-size:15px}.modo button span{font-size:12.5px;color:#c9d4ea}.modo button.on{border-color:#ff6b00;background:linear-gradient(160deg,rgba(255,107,0,.18),rgba(255,107,0,.04));box-shadow:0 0 0 1px #ff6b00}
+.modo-ficha .simonly{display:none}
+.ded{border-left-color:#5fe3d3}.ded h3{color:#5fe3d3}.dedhead{background:rgba(95,227,211,.08);border:1px solid rgba(95,227,211,.3);border-radius:10px;padding:10px 12px;font-size:13px;margin:6px 0 12px}.ded table.ft td{min-width:0;white-space:normal;line-height:1.5}.ded .al{display:inline-block;margin:2px 4px 2px 0}.ded small{color:#c9d4ea}
+.sug{display:flex;flex-direction:column;gap:4px;margin-top:6px;max-height:260px;overflow:auto}.sug button{text-align:left;background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.12);color:#fff;border-radius:8px;padding:7px 10px;font:inherit;font-size:13px;cursor:pointer}.sug button:hover{border-color:#ff8c00;background:rgba(255,107,0,.15)}.sug b{color:#ffa500;margin-right:6px}
+.ficha{border-left-width:4px;background:linear-gradient(180deg,rgba(255,107,0,.08),rgba(255,255,255,.02))}.ficha-head{display:grid;grid-template-columns:repeat(auto-fit,minmax(130px,1fr));gap:8px;margin:8px 0 14px}.ficha-head div{background:rgba(3,10,30,.7);border:1px solid rgba(255,255,255,.1);border-radius:10px;padding:8px 10px;display:flex;flex-direction:column;gap:2px}.ficha-head small{color:#ffa500;font-size:10px;text-transform:uppercase;letter-spacing:.5px}.ficha-head b{font-size:15px;color:#fff;word-break:break-word}
+table.ft td,table.ft th{font-size:12.5px;vertical-align:top}table.ft td.n,table.ft th.n{text-align:left;min-width:150px}
+.al,.vl,.ex,.na{display:block;width:fit-content}.al{background:linear-gradient(90deg,#ff6b00,#ff9a2e);color:#fff;font-weight:700;padding:2px 9px;border-radius:99px;font-size:12.5px;letter-spacing:.2px}.vl{color:#5fe3d3;font-weight:600;font-size:13px;margin-top:4px;font-variant-numeric:tabular-nums}.ex{color:#c9d4ea;font-size:11px;margin-top:2px}.na{color:#c9d4ea;font-style:italic;font-size:12px}
+table.ft.m-al .vl,table.ft.m-vl .al{display:none}
+.legend{display:flex;gap:18px;align-items:center;flex-wrap:wrap;font-size:12.5px;color:#c9d4ea;margin:8px 0 10px}.legend i{display:inline-block;font-style:normal;margin-right:6px;padding:1px 8px;border-radius:99px}.legend i.al{display:inline-block}.legend i.vl{display:inline-block;border:1px solid #5fe3d3;color:#5fe3d3;margin-top:0}.legend .modes{margin-left:auto;display:flex;gap:6px;align-items:center}.legend .modes button{background:transparent;border:1px solid rgba(255,255,255,.2);color:#fff;border-radius:99px;padding:3px 10px;font:inherit;font-size:12px;cursor:pointer}.legend .modes button.on{background:#ff6b00;border-color:#ff6b00}
+tr.tot .al{background:#ffd27a;color:#1a0f00}
+@media print{.al{background:none;color:#000;border:1px solid #000;padding:0 6px}.vl{color:#000}.ex{color:#444}}
+table.ft td.n{white-space:nowrap}table.ft td small,table.ft th small{color:#c9d4ea;font-weight:400}table.ft tr.tot th{background:rgba(255,107,0,.12);color:#ffd27a;border-top:2px solid #ff6b00}
+.hero{position:relative;overflow:hidden;border-radius:22px;margin:4px 0 18px;padding:40px 36px;background:radial-gradient(1200px 500px at 85% 50%,rgba(255,107,0,.22),transparent 60%),linear-gradient(120deg,#0a1f4d 0%,#07132b 70%);border:1px solid rgba(255,140,0,.35);box-shadow:0 20px 60px rgba(0,0,0,.45);display:grid;grid-template-columns:1.15fr .85fr;gap:28px;align-items:center}
+.hero .brand{display:flex;align-items:center;gap:10px;color:#fff;font-weight:700;letter-spacing:.3px;margin-bottom:14px}.hero .brand i{width:34px;height:34px;border-radius:10px;background:linear-gradient(135deg,#ff6b00,#ffa500);display:inline-flex;align-items:center;justify-content:center;font-style:normal;color:#fff;box-shadow:0 6px 18px rgba(255,107,0,.45)}.hero .brand small{color:#ffa500;font-weight:600}
+.hero h2{font-family:"Playfair Display",Georgia,serif;font-size:clamp(28px,4vw,46px);line-height:1.08;margin:0 0 14px;color:#fff;font-weight:700}.hero h2 em{font-style:normal;color:#ffa500}
+.hero p{font-size:16px;line-height:1.5;color:#dfe6f5;margin:0 0 22px;max-width:560px}
+.hero .cta{display:inline-flex;align-items:center;gap:10px;background:linear-gradient(90deg,#ff6b00,#ff8c1a);color:#fff;font-weight:700;font-size:16px;padding:14px 26px;border-radius:12px;border:0;cursor:pointer;box-shadow:0 10px 30px rgba(255,107,0,.45);font:inherit;font-weight:700}.hero .cta:hover{filter:brightness(1.08)}.hero .cta2{margin-left:12px;color:#ffa500;font-weight:600;text-decoration:none}
+.hero .art{position:relative;min-height:300px}.hero .blob{position:absolute;inset:6% 4% 6% 10%;border-radius:48% 52% 46% 54%/52% 44% 56% 48%;background:linear-gradient(135deg,rgba(0,71,171,.9),rgba(255,107,0,.35));filter:saturate(1.1);box-shadow:inset 0 0 80px rgba(255,255,255,.08),0 30px 80px rgba(0,0,0,.45)}
+.hero svg{position:absolute;left:14%;top:12%;width:58%;height:76%}
+.hero .tags{position:absolute;right:0;top:8%;display:flex;flex-direction:column;gap:10px;align-items:flex-end}.hero .tags span{background:rgba(7,19,43,.85);border:1.5px solid #ff6b00;color:#fff;border-radius:99px;padding:8px 16px;font-size:13px;font-weight:600;box-shadow:0 8px 24px rgba(0,0,0,.4);backdrop-filter:blur(6px);white-space:nowrap}.hero .tags span b{color:#ffa500;margin-right:6px}
+.hero .tags span:nth-child(odd){transform:translateX(-10px)}
+@media(max-width:860px){.hero{grid-template-columns:1fr;padding:28px 20px}.hero .art{min-height:0}.hero .blob,.hero svg{display:none}.hero .tags{position:static;flex-direction:row;flex-wrap:wrap;justify-content:center;margin-top:10px}.hero .tags span:nth-child(odd){transform:none}.hero svg{left:20%;width:60%}}
+@media print{.hero{display:none}}
+.tour{display:grid;grid-template-columns:1fr 1.1fr;gap:28px;align-items:start;margin:0 0 18px;padding:28px 32px;border-radius:22px;background:rgba(255,255,255,.025);border:1px solid rgba(255,255,255,.08)}
+.tour h2{margin:0 0 6px;font-family:"Playfair Display",Georgia,serif;color:#fff;font-size:26px}.tour h2 span{color:#ffa500}.tour .lead{color:var(--mut);margin:0 0 14px;font-size:14px}
+.tour details{border-bottom:1px solid rgba(255,255,255,.1)}.tour details:last-of-type{border-bottom:0}.tour summary{list-style:none;cursor:pointer;display:flex;align-items:center;gap:12px;padding:14px 6px;font-weight:700;font-size:17px;color:#fff}.tour summary::-webkit-details-marker{display:none}.tour summary i{width:22px;height:22px;border-radius:50%;background:rgba(255,107,0,.18);border:1.5px solid #ff6b00;color:#ffa500;font-style:normal;font-size:13px;display:inline-flex;align-items:center;justify-content:center;flex:none}.tour summary b{flex:1}.tour summary::after{content:"▾";color:var(--mut);transition:transform .2s}.tour details[open]>summary{background:rgba(255,107,0,.08);border-radius:10px}.tour details[open]>summary::after{transform:rotate(180deg)}
+.tour .tb{padding:4px 6px 16px 40px;color:#dfe6f5;font-size:15px;line-height:1.5}.tour .tb p{margin:0 0 12px}.tour .tb button{background:linear-gradient(90deg,#ff6b00,#ff8c1a);color:#fff;border:0;border-radius:10px;padding:10px 18px;font:inherit;font-weight:700;cursor:pointer;box-shadow:0 8px 22px rgba(255,107,0,.35)}
+.tour .shot{position:sticky;top:16px;border-radius:18px;overflow:hidden;border:1px solid rgba(255,140,0,.35);background:linear-gradient(160deg,#0a1f4d,#07132b);box-shadow:0 20px 60px rgba(0,0,0,.45);padding:18px}
+.tour .shot .bar{display:flex;gap:6px;margin-bottom:12px}.tour .shot .bar i{width:10px;height:10px;border-radius:50%;background:rgba(255,255,255,.18)}.tour .shot .bar i:first-child{background:#ff6b00}
+.tour .shot h3{margin:0 0 4px;color:#ffa500;font-size:18px}.tour .shot .sub{margin:0 0 12px;color:var(--mut)}
+.tour .shot table{width:100%;border-collapse:collapse;font-size:13px}.tour .shot th{color:var(--mut);text-align:left;font-weight:600;padding:6px 8px;border-bottom:1px solid rgba(255,255,255,.1)}.tour .shot td{padding:8px;border-bottom:1px dashed rgba(255,255,255,.08)}.tour .shot td:last-child{text-align:right}
+.tour .shot .k{display:inline-block;background:rgba(255,107,0,.15);border:1px solid rgba(255,140,0,.5);color:#ffd27a;border-radius:99px;padding:2px 10px;font-weight:700;font-size:12px}
+.tour .shot ul{margin:12px 0 0;padding-left:18px;color:#dfe6f5;font-size:14px}.tour .shot ul li{margin:4px 0}
+@media(max-width:860px){.tour{grid-template-columns:1fr;padding:20px 16px}.tour .shot{position:static}}
+@media print{.tour{display:none}}
+.menu{margin:0 0 18px}.menu h2{font-family:"Playfair Display",Georgia,serif;color:#fff;font-size:24px;margin:0 0 4px}.menu h2 span{color:#ffa500}.menu>.lead{color:var(--mut);margin:0 0 14px;font-size:14px}
+.mg{margin:14px 0 6px}.mg h3{margin:0 0 10px;font-size:13px;letter-spacing:1.2px;text-transform:uppercase;color:#ffa500;display:flex;align-items:center;gap:10px}.mg h3::after{content:"";flex:1;height:1px;background:rgba(255,140,0,.25)}
+.tiles{display:grid;grid-template-columns:repeat(auto-fill,minmax(210px,1fr));gap:12px}
+.tile{display:flex;align-items:center;gap:12px;text-align:left;background:linear-gradient(135deg,#0a2a6b,#0a1f4d 60%,#07132b);border:1px solid rgba(255,140,0,.35);border-radius:12px;padding:14px;color:#fff;cursor:pointer;font:inherit;min-height:72px;box-shadow:0 8px 24px rgba(0,0,0,.35);transition:transform .15s,box-shadow .15s,border-color .15s}
+.tile:hover{transform:translateY(-2px);border-color:#ff6b00;box-shadow:0 14px 34px rgba(255,107,0,.25)}.tile i{flex:none;width:38px;height:38px;border-radius:9px;background:#fff;color:#0a1f4d;display:inline-flex;align-items:center;justify-content:center;font-style:normal;font-weight:800;font-size:18px;border:2px solid #ff6b00}
+.tile b{display:block;font-size:14px;color:#fff;line-height:1.2}.tile small{display:block;color:#ffb866;font-size:11.5px;margin-top:3px;line-height:1.25}
+.tile.off{opacity:.55;cursor:not-allowed;filter:grayscale(.4)}.tile.off:hover{transform:none;border-color:rgba(255,140,0,.35);box-shadow:0 8px 24px rgba(0,0,0,.35)}
+.pills{display:flex;flex-wrap:wrap;gap:10px;margin:16px 0 4px}.pills button{background:#0047ab;color:#fff;border:0;border-radius:99px;padding:10px 18px;font:inherit;font-weight:700;font-size:13px;cursor:pointer;box-shadow:0 6px 18px rgba(0,71,171,.35)}.pills button:hover{background:#ff6b00}
+.subnav{position:sticky;top:0;z-index:5;display:flex;flex-wrap:wrap;gap:6px;padding:10px 0;margin:0 0 6px;background:linear-gradient(var(--card),var(--card) 85%,transparent)}.subnav a{color:#fff;text-decoration:none;font-size:13px;font-weight:600;padding:7px 14px;border-radius:99px;border:1px solid rgba(255,140,0,.45);background:rgba(255,107,0,.08)}.subnav a:hover,.subnav a.on{background:#ff6b00;border-color:#ff6b00}
+@media print{.menu,.subnav{display:none}}
+details.det{margin-top:14px}details.det>summary{cursor:pointer;color:#ffa500;font-weight:600;padding:10px 12px;border:1px dashed rgba(255,140,0,.4);border-radius:10px;list-style:none}details.det>summary::before{content:"▸ ";}details.det[open]>summary::before{content:"▾ ";}
+@media print{details.det{display:block}details.det>summary{display:none}.sug{display:none}}
+.cmp td.best,.cmp th.best,td.best{background:rgba(255,107,0,.15);color:#ffd27a;font-weight:600}
+.tog{display:flex;gap:10px;flex-wrap:wrap}.tog label{display:flex;align-items:center;gap:6px;text-transform:none;font-size:13px;color:var(--ink);cursor:pointer}.tog input{width:auto}
+.steps{display:grid;grid-template-columns:repeat(auto-fit,minmax(160px,1fr));gap:8px;margin:8px 0}.step{border:1px dashed var(--line);border-radius:8px;padding:8px;font-size:12px}.step b{display:block;font-size:13px}
+@media print{:root{--bg:#fff;--card:#fff;--ink:#000;--mut:#444;--line:#999}h1,.panel h2,.box h3,label,.tool b{color:#000!important}header a,.grid,.tabs,footer p,button.go,.noprint{display:none!important}body{background:#fff;color:#000}.panel,.box{border-color:#999;break-inside:avoid}}
+</style>
+</head>
+<body>
+<header><div class="wrap" style="display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap"><div><h1><span>Vyson Fiscal</span> · Guia Tributário por Serviço</h1><p>LC 116/2003 · LC 123/2006 · NFS-e Nacional · IBS e CBS (LC 214/2025) · Simples Nacional, Lucro Presumido e Lucro Real</p></div></div></header>
+<main class="wrap">
+<section class="hero noprint" id="hero">
+ <div>
+  <div class="brand"><i>V</i> Vyson Fiscal <small>· Simulador Tributário</small></div>
+  <h2>Descubra <em>em três cliques</em> os códigos, as alíquotas e a lei de cada serviço</h2>
+  <p>Ficha tributária unificada por serviço, simulação nos três regimes, retenções, deduções, ISS do seu município, IBS/CBS e toda a legislação com fonte oficial. Feito para quem não é contador, com a profundidade de quem é.</p>
+  <button type="button" class="cta" id="hero-go">Começar agora →</button><a href="#leis" class="cta2" id="hero-leis">ver a legislação</a>
+ </div>
+ <div class="art" aria-hidden="true">
+  <div class="blob"></div>
+  <svg viewBox="0 0 320 320" fill="none"><defs><linearGradient id="g1" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#ffffff" stop-opacity=".95"/><stop offset="1" stop-color="#dfe6f5" stop-opacity=".9"/></linearGradient><linearGradient id="g2" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#ff6b00"/><stop offset="1" stop-color="#ffa500"/></linearGradient></defs>
+   <rect x="70" y="40" width="180" height="240" rx="18" fill="url(#g1)" transform="rotate(-6 160 160)"/>
+   <rect x="96" y="76" width="110" height="14" rx="7" fill="#0a1f4d" opacity=".85" transform="rotate(-6 160 160)"/>
+   <rect x="96" y="104" width="140" height="10" rx="5" fill="#0a1f4d" opacity=".35" transform="rotate(-6 160 160)"/>
+   <rect x="96" y="124" width="120" height="10" rx="5" fill="#0a1f4d" opacity=".35" transform="rotate(-6 160 160)"/>
+   <rect x="96" y="144" width="130" height="10" rx="5" fill="#0a1f4d" opacity=".35" transform="rotate(-6 160 160)"/>
+   <rect x="96" y="176" width="54" height="26" rx="13" fill="url(#g2)" transform="rotate(-6 160 160)"/><text x="123" y="194" text-anchor="middle" font-size="13" font-weight="700" fill="#fff" font-family="Inter,Arial" transform="rotate(-6 160 160)">2,5%</text>
+   <rect x="158" y="176" width="54" height="26" rx="13" fill="#0047ab" transform="rotate(-6 160 160)"/><text x="185" y="194" text-anchor="middle" font-size="13" font-weight="700" fill="#fff" font-family="Inter,Arial" transform="rotate(-6 160 160)">11%</text>
+   <rect x="96" y="216" width="150" height="10" rx="5" fill="#0a1f4d" opacity=".35" transform="rotate(-6 160 160)"/>
+   <rect x="96" y="236" width="90" height="10" rx="5" fill="#0a1f4d" opacity=".35" transform="rotate(-6 160 160)"/>
+   <circle cx="248" cy="62" r="34" fill="url(#g2)"/><path d="M234 62l10 10 20-22" stroke="#fff" stroke-width="6" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+   <circle cx="58" cy="250" r="26" fill="#0047ab" stroke="#ffa500" stroke-width="3"/><text x="58" y="256" text-anchor="middle" font-size="18" font-weight="700" fill="#fff" font-family="Inter,Arial">§</text>
+  </svg>
+  <div class="tags"><span><b>ISS</b> por município</span><span><b>INSS</b> retenção 11%</span><span><b>PIS · COFINS · IRPJ · CSLL</b></span><span><b>IBS · CBS</b> reforma tributária</span><span><b>Simples</b> anexos e Fator R</span><span>✦ e muito mais</span></div>
+ </div>
+</section>
+<section class="tour noprint" id="tour">
+ <div>
+  <h2>Confira: <span>o que cada ferramenta faz</span></h2>
+  <p class="lead">Abra um item para entender antes de entrar. Tudo gratuito, sem cadastro.</p>
+  <details name="tour" data-t="guia" data-img="guia" open><summary><i>✓</i><b>Ficha do serviço</b></summary><div class="tb"><p>Escolha o serviço (ex.: construção civil, consultoria, clínica) e receba a tabela pronta: códigos da NFS-e (cTribNac, NBS, CST, cClassTrib), alíquotas de cada tributo no Simples, Presumido e Real, deduções, retenções, ISS do município e a base legal de cada linha, com link para a norma.</p><button type="button">Abrir a ficha →</button></div></details>
+  <details name="tour" data-t="sim" data-img="sim"><summary><i>✓</i><b>Simulação com valores</b></summary><div class="tb"><p>Seis perguntas simples (valor da nota, material, regime, folha, quem contrata, onde presta) e o imposto sai em reais nos três regimes, com INSS retido, IRRF/CSRF, ISS municipal, IBS/CBS de 2026 e comparativo de qual regime pesa menos.</p><button type="button">Simular →</button></div></details>
+  <details name="tour" data-t="simples" data-img="simples"><summary><i>✓</i><b>Simples Nacional por anexo</b></summary><div class="tb"><p>Anexos I a V com as faixas de receita, alíquota nominal, parcela a deduzir, alíquota efetiva e a partilha de cada tributo. Calculadora da alíquota efetiva pela receita de 12 meses e Fator R. E a resposta direta: pode ser Simples? pode ser MEI? quem não pode.</p><button type="button">Ver os anexos →</button></div></details>
+  <details name="tour" data-t="leis" data-img="leis"><summary><i>✓</i><b>Legislação com fonte oficial</b></summary><div class="tb"><p>Linha do tempo das normas federais (CF/88, LC 116, LC 123, LC 214, Leis do IRPJ, PIS/COFINS, INSS, INs da Receita) e municipais (Maceió, São Paulo), com ementa, vigência, casos de uso e link para o texto oficial. Filtre por tributo, esfera e tipo.</p><button type="button">Abrir a legislação →</button></div></details>
+  <details name="tour" data-t="consulta" data-img="consulta"><summary><i>✓</i><b>Consulta de códigos</b></summary><div class="tb"><p>Todos os itens da lista da LC 116 (1 a 40.01) com NBS, cClassTrib, cIndOp e os campos obrigatórios da DPS/NFS-e Nacional.</p><button type="button">Consultar →</button></div></details>
+  <details name="tour" data-t="auditor" data-img="auditor"><summary><i>✓</i><b>Auditor de NFS-e (XML)</b></summary><div class="tb"><p>Cole o XML da nota e confira cTribNac, NBS, cIndOp, CST, cClassTrib e grupo de obra, com erros e alertas apontados linha a linha.</p><button type="button">Auditar uma nota →</button></div></details>
+ </div>
+ <div class="shot" id="tshot" aria-hidden="true"></div>
+</section>
+<section class="menu noprint" id="menu"><h2>O que você quer fazer? <span>Escolha um bloco</span></h2><p class="lead">Tudo organizado por grupo. Dentro de cada ficha há sub-abas para ir direto ao ponto.</p><div id="menu-body"></div></section>
+<section id="wiz" class="panel wiz">
+ <div class="wstep" data-step="1"><h2>O que você procura?</h2><p class="sub">Responda em três cliques. A tabela sai pronta, com os códigos, as alíquotas e a lei.</p>
+  <div class="wopts"><button type="button" data-k="servico"><b>Serviço</b><span>Obra, consultoria, clínica, limpeza, software, advocacia…</span></button><button type="button" data-k="produto"><b>Produto</b><span>Venda de mercadoria (NCM, ICMS, IPI)</span></button></div></div>
+ <div class="wstep hide" data-step="2"><h2>Você quer…</h2><div class="wopts"><button type="button" data-m="ficha"><b>Só informação</b><span>Códigos da nota, CST, alíquotas, deduções e base legal. Sem preencher nada.</span></button><button type="button" data-m="sim"><b>Simular valores</b><span>Informe o valor da nota e veja o imposto em reais nos três regimes.</span></button></div><p class="note"><a href="#" data-back="1">← voltar</a></p></div>
+ <div class="wstep hide" data-step="3"><h2>Qual é o serviço?</h2><p class="sub">Clique em um dos mais comuns ou escreva a atividade.</p><div class="chips" id="wchips"></div><input id="wq" placeholder="Ou escreva: ex. pintura, dedetização, fotografia…" autocomplete="off"><div id="wsug" class="sug"></div><p class="note"><a href="#" data-back="2">← voltar</a></p></div>
+ <div class="wstep hide" data-step="produto"><h2>Produtos: em construção</h2><p class="sub">A ficha de mercadorias (NCM, CFOP, CST/CSOSN, ICMS, IPI, IBS/CBS) é a próxima etapa do Vyson Fiscal. Por enquanto, a ferramenta cobre serviços.</p><p class="note"><a href="#" data-back="1">← voltar</a></p></div>
+</section>
+<p class="note noprint" id="wbar" style="display:none"><a href="#" id="wrestart">↩ Recomeçar</a> · <a href="#" id="wtools">Mais ferramentas (Simples por anexo, legislação, consulta, simulador, auditor de XML)</a></p>
+<div class="grid hide" id="grid">
+ <button class="tool" data-t="guia"><b>Guia por Serviço</b><span>Escolha o serviço, o regime e se tem folha: códigos, alíquotas, lei, benefícios, créditos, exportação e planejamento.</span><i class="tag">Novo</i></button>
+ <button class="tool" data-t="consulta"><b>Consulta de Serviços</b><span>Todos os itens de 1 a 40.01 com NBS, cClassTrib, cIndOp e campos obrigatórios.</span></button>
+ <button class="tool" data-t="simulador"><b>Simulador de Tributos</b><span>ISS, PIS, COFINS, IRPJ, CSLL e IBS/CBS com dedução de material e crédito.</span></button>
+ <button class="tool" data-t="simples"><b>Simples Nacional</b><span>Anexos I a V: faixas de receita, alíquota nominal, parcela a deduzir, alíquota efetiva e partilha, com calculadora e Fator R.</span><i class="tag">Novo</i></button>
+ <button class="tool" data-t="leis"><b>Legislação</b><span>Linha do tempo das leis federais: IBS/CBS, Simples, Presumido, Real, INSS, retenções, importação e exportação, com links oficiais.</span><i class="tag">Novo</i></button>
+ <button class="tool" data-t="auditor"><b>Auditor de NFS-e (XML)</b><span>Confere cTribNac, NBS, cIndOp, CST, cClassTrib e grupo de obra.</span></button>
+ <button class="tool" disabled><b>Emissão por Web Service</b><span>Em desenvolvimento: exige certificado digital e servidor seguro.</span><i class="tag">Em breve</i></button>
+</div>
+<section id="p-guia" class="panel hide"></section>
+<section id="p-consulta" class="panel hide"></section>
+<section id="p-simulador" class="panel hide"></section>
+<section id="p-auditor" class="panel hide"></section>
+<section id="p-leis" class="panel hide"></section>
+<section id="p-simples" class="panel hide"></section>
+</main>
+<footer class="wrap"><div id="fonte"></div><p>Ferramenta de apoio. Confirme as regras na legislação vigente e no emissor da prefeitura antes de emitir ou declarar. Os dados do XML analisado ficam no seu navegador.</p></footer>
+<script>
+"use strict";
+let D=null;
+const $=(s,r=document)=>r.querySelector(s);
+const fmt=v=>(isFinite(v)?v:0).toLocaleString("pt-BR",{style:"currency",currency:"BRL"});
+const pct=v=>(v*100).toLocaleString("pt-BR",{maximumFractionDigits:4})+"%";
+const esc=s=>String(s==null?"":s).replace(/[&<>"]/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
+const RESP=new Set(["03.05","07.02","07.04","07.05","07.09","07.10","07.12","07.16","07.17","07.19","11.02","17.05","17.10"]);
+const sub=c=>c.slice(0,2)+"."+c.slice(2,4);
+const fmtC=c=>c.slice(0,2)+"."+c.slice(2,4)+"."+c.slice(4);
+const nbsF=n=>n.length===9?n[0]+"."+n.slice(1,5)+"."+n.slice(5,7)+"."+n.slice(7):n;
+const dd=s=>String(s||"").replace(/§/g,"Serviços de ");
+const LOCI={I:"Local do imóvel",L:"Local da prestação",A:"Domicílio principal do adquirente"};
+function locISS(l){const o=[];if(l.includes("P"))o.push("Estabelecimento/domicílio do prestador");if(l.includes("L"))o.push("Local da prestação");if(l.includes("T"))o.push("Estabelecimento/domicílio do tomador");return o.join(" | ")||"—"}
+function nbsList(cod){const s=sub(cod);return D.nb[s+"."+cod.slice(4)]||D.nb[s]||[]}
+function ct(cod){return D.ct.find(r=>r[0]===cod)}
+function cclOpts(r){return D.L[r[6]]||[]}
+function red(c){const x=D.cls[c];return x?x[1]:"ver LC 214"}
+function redNum(c){const m=/^(\d+)%$/.exec(red(c));return m?+m[1]/100:0}
+function presuncao(s){
+ if(s==="07.02")return{i:.32,c:.32,t:"Padrão 32%/32%. Empreitada com TODOS os materiais incorporados à obra: IRPJ 8% e CSLL 12% (Lei 9.249/1995, arts. 15 §1º III 'b' e 20)."};
+ if(s.startsWith("04."))return{i:.32,c:.32,t:"Padrão 32%/32%. Serviço hospitalar que cumpra o art. 15 §1º III 'a': IRPJ 8% e CSLL 12% (validar)."};
+ if(s.startsWith("16."))return{i:.16,c:.12,t:"Transporte: IRPJ 16% (passageiros) ou 8% (cargas); CSLL 12% (validar)."};
+ return{i:.32,c:.32,t:"IRPJ 32% e CSLL 32% (serviços em geral)."}}
+function issBase(s){return s==="07.02"||s==="07.05"?"Exclui da base o valor dos materiais fornecidos pelo prestador (LC 116, art. 7º, §2º, I).":"Base = preço do serviço (LC 116, art. 7º). Sem dedução de material."}
+function issAliq(s){return["07.02","07.05","16.01"].includes(s)?"Teto 5%. O piso de 2% admite exceção para este subitem (art. 8º-A, §1º).":"Entre 2% (art. 8º-A) e 5% (art. 8º, II), conforme a lei do município."}
+const ATEN={"200052":"A redução de 30% só vale para PJ que cumpra TODOS os requisitos do art. 127, §1º, II da LC 214 (sócios habilitados e fiscalizados pelo conselho, sem PJ sócia, sem atividade diversa).","200046":"Construção civil está no art. 252, V (regime de bens imóveis). Trava de crédito de material: art. 255, §5º; não vale para administração pública (§6º). Apuração por obra com CIB (arts. 269 e 270)."};
+
+/* ---------- navegação ---------- */
+function open(t){document.querySelectorAll(".tool").forEach(b=>b.setAttribute("aria-pressed",b.dataset.t===t));["guia","consulta","simulador","auditor","leis","simples"].forEach(x=>$("#p-"+x).classList.toggle("hide",x!==t));history.replaceState(null,"","#"+t);if(open.ready)$("#p-"+t).scrollIntoView({behavior:"smooth",block:"start"});open.ready=true}
+document.querySelectorAll(".tool[data-t]").forEach(b=>b.onclick=()=>open(b.dataset.t));
+
+/* ---------- consulta ---------- */
+function buildConsulta(){
+ const p=$("#p-consulta");
+ const its=Object.keys(D.items).map(k=>`<option value="${k}">${k} · ${esc(D.items[k]).slice(0,60)}</option>`).join("");
+ p.innerHTML=`<h2>Consulta de Serviços</h2><p class="sub">Pesquise por código (07.02.02), subitem (07.02) ou palavra (pintura, limpeza, demolição).</p>
+ <div class="row"><div><label for="q">Buscar</label><input id="q" placeholder="Ex.: 070202, limpeza, pintura" autocomplete="off"></div><div><label for="qi">Item da lista</label><select id="qi"><option value="">Todos</option>${its}</select></div></div>
+ <div class="scroll"><table><thead><tr><th>cTribNac</th><th>Descrição</th><th>cClassTrib padrão</th></tr></thead><tbody id="qr"></tbody></table></div><div class="note" id="qc"></div><div id="qd"></div>`;
+ const run=()=>{const q=$("#q").value.trim().toLowerCase().replace(/[.\-]/g,""),it=$("#qi").value;
+  let r=D.ct.filter(x=>(!it||x[0].startsWith(it))&&(!q||x[0].includes(q)||dd(x[1]).toLowerCase().includes($("#q").value.trim().toLowerCase())));
+  $("#qc").textContent=r.length+" serviço(s) encontrado(s)"+(r.length>80?". Mostrando os 80 primeiros; refine a busca.":".");
+  $("#qr").innerHTML=r.slice(0,80).map(x=>`<tr class="click" data-c="${x[0]}"><td><b>${fmtC(x[0])}</b></td><td>${esc(x[1])}</td><td>${esc(cclOpts(x)[0]||"—")}</td></tr>`).join("");
+  document.querySelectorAll("#qr tr").forEach(tr=>tr.onclick=()=>detalhe(tr.dataset.c))};
+ $("#q").oninput=run;$("#qi").onchange=run;run()}
+function detalhe(cod){
+ const r=ct(cod),s=sub(cod),o=cclOpts(r),pr=presuncao(s),nb=nbsList(cod);
+ const ind=(D.I[r[4]]||[]);
+ const camp=["cTribNac = "+cod,"cNBS (código NBS do serviço)","cIndOp"+(ind.length?" = "+ind.join(" ou "):""),"CST IBS/CBS"+(o[0]?" (ex.: "+o[0].slice(0,3)+")":""),"cClassTrib"+(o[0]?" (ex.: "+o[0]+")":""),"tribISSQN e tpRetISSQN","CST PIS/COFINS","xDescServ (descrição do serviço)","cLocPrestacao (local da prestação)"];
+ if(r[3]==="O")camp.push("Grupo OBRA: cObra (CNO/CEI), cCIB e endereço da obra");
+ if(r[3]==="E")camp.push("Grupo atvEvento: atividade/evento");
+ let h=`<div class="box"><h3>${fmtC(cod)} · ${esc(D.items[cod.slice(0,2)]||"")}</h3><p style="margin:0 0 8px">${esc(dd(r[1]))}</p>
+ <div class="kv"><div>Incidência do ISS</div><div>${esc(locISS(r[2]))}</div><div>Responsável pelo ISS (tomador PJ)</div><div>${RESP.has(s)?'<span class="pill warn">SIM</span> art. 6º, §2º, II da LC 116':"Não pela LC 116 (a lei municipal pode prever)"}</div><div>Base do ISS</div><div>${esc(issBase(s))}</div><div>Alíquota do ISS</div><div>${esc(issAliq(s))}</div><div>Local de incidência IBS/CBS</div><div>${esc(LOCI[r[5]]||r[5]||"—")}</div><div>Presunção (Lucro Presumido)</div><div>${esc(pr.t)}</div><div>PIS/COFINS (cumulativo)</div><div>0,65% e 3,00% sobre a receita, sem crédito (validar CST na EFD-Contribuições)</div></div></div>
+ <div class="box"><h3>Campos obrigatórios na DPS para este serviço</h3>${camp.map(c=>`<div class="f"><span class="pill ok">✓</span><div>${esc(c)}</div></div>`).join("")}</div>
+ <div class="box"><h3>cClassTrib possíveis (1º = padrão)</h3><div class="scroll"><table><thead><tr><th>Código</th><th>CST</th><th>Nome</th><th>Redução</th></tr></thead><tbody>${o.map(c=>`<tr><td><b>${c}</b></td><td>${c.slice(0,3)}</td><td>${esc((D.cls[c]||[""])[0])}</td><td>${esc(red(c))}</td></tr>`).join("")||"<tr><td colspan=4>Sem cClassTrib no Anexo VIII para este serviço. Consultar a tabela oficial.</td></tr>"}</tbody></table></div>${o.map(c=>ATEN[c]?`<p class="note"><b>${c}:</b> ${esc(ATEN[c])}</p>`:"").join("")}</div>
+ <div class="box"><h3>NBS deste subitem (${nb.length})</h3><input id="nf" placeholder="Filtrar NBS (ex.: pintura)" style="margin-bottom:8px"><div class="scroll" style="max-height:340px;overflow:auto"><table><thead><tr><th>NBS</th><th>Descrição</th><th>cIndOp</th><th>cClassTrib</th></tr></thead><tbody id="nt"></tbody></table></div></div>`;
+ $("#qd").innerHTML=h;
+ const rn=()=>{const f=$("#nf").value.toLowerCase();$("#nt").innerHTML=nb.filter(x=>!f||dd(x[1]).toLowerCase().includes(f)||x[0].includes(f.replace(/\./g,""))).map(x=>`<tr><td><b>${nbsF(x[0])}</b></td><td>${esc(dd(x[1]))}</td><td>${esc((D.I[x[2]]||[])[0]||"")}</td><td>${esc((D.L[x[3]]||[]).join(", "))}</td></tr>`).join("")};
+ $("#nf").oninput=rn;rn();$("#qd").scrollIntoView({behavior:"smooth",block:"start"})}
+
+/* ---------- simulador ---------- */
+function buildSim(){
+ const p=$("#p-simulador");
+ p.innerHTML=`<h2>Simulador de Tributos</h2><p class="sub">Lucro Presumido. Informe o serviço, o valor da nota e (se houver) o valor dos materiais fornecidos.</p>
+ <div class="row"><div><label for="sc">Serviço (cTribNac)</label><input id="sc" list="sl" placeholder="Digite 070202 ou parte da descrição" autocomplete="off"><datalist id="sl">${D.ct.map(x=>`<option value="${x[0]}">${esc(dd(x[1]).slice(0,70))}</option>`).join("")}</datalist></div>
+ <div><label for="sv">Valor da nota (R$)</label><input id="sv" type="number" step="0.01" value="30000"></div>
+ <div><label for="sm">Materiais fornecidos (R$)</label><input id="sm" type="number" step="0.01" value="0"></div>
+ <div><label for="si">Alíquota do ISS (%)</label><input id="si" type="number" step="0.01" value="5"></div></div>
+ <div class="row"><div><label for="sa">Ano (IBS/CBS)</label><select id="sa"><option value="2026">2026 (teste: CBS 0,9% e IBS 0,1%)</option><option value="x">2027 em diante (informar alíquotas)</option></select></div>
+ <div><label for="sb">CBS cheia (%)</label><input id="sb" type="number" step="0.01" value="0" disabled></div><div><label for="sd">IBS cheio (%)</label><input id="sd" type="number" step="0.01" value="0" disabled></div>
+ <div><label for="sk">cClassTrib aplicado</label><select id="sk"></select></div></div>
+ <div class="row"><div><label for="sr">IBS/CBS pago nos materiais (crédito, R$)</label><input id="sr" type="number" step="0.01" value="0"></div>
+ <div><label for="st">Tomador</label><select id="st"><option value="c">Contribuinte do regime regular</option><option value="n">Não contribuinte (ex.: pessoa física)</option><option value="g">Administração pública direta/autarquia/fundação</option></select></div>
+ <div><label for="sp">Presunção IRPJ / CSLL</label><select id="sp"><option value="a">Padrão do subitem</option><option value="o">Obra com todos os materiais (8% / 12%)</option></select></div></div>
+ <div id="so"></div>`;
+ ["sc","sv","sm","si","sa","sb","sd","sk","sr","st","sp"].forEach(i=>$("#"+i).addEventListener("input",calc));
+ $("#sa").addEventListener("change",()=>{const x=$("#sa").value==="x";$("#sb").disabled=$("#sd").disabled=!x;calc()});
+ $("#sc").addEventListener("change",()=>{const r=ct($("#sc").value.trim());if(r){const o=cclOpts(r);$("#sk").innerHTML=o.map(c=>`<option value="${c}">${c} · ${esc(red(c))}</option>`).join("")||'<option value="000001">000001 · integral</option>';if(sub(r[0])==="07.02")$("#sp").value="a"}calc()});
+ calc()}
+function calc(){
+ const cod=$("#sc").value.trim(),r=ct(cod),out=$("#so");
+ if(!r){out.innerHTML='<div class="note">Escolha um serviço da lista para simular.</div>';return}
+ const s=sub(cod),V=+$("#sv").value||0,M=Math.min(+$("#sm").value||0,V),iss=(+$("#si").value||0)/100;
+ const ded=(s==="07.02"||s==="07.05")?M:0,bIss=V-ded,vIss=bIss*iss,pis=V*.0065,cof=V*.03;
+ let pr=presuncao(s);if($("#sp").value==="o"){pr={i:.08,c:.12}}
+ const irpj=V*pr.i*.15,csll=V*pr.c*.09;
+ const ccl=$("#sk").value||"000001",rd=redNum(ccl),y=$("#sa").value;
+ const cb=y==="2026"?.009:(+$("#sb").value||0)/100,ib=y==="2026"?.001:(+$("#sd").value||0)/100;
+ const dCBS=V*cb*(1-rd),dIBS=V*ib*(1-rd),deb=dCBS+dIBS;let cr=+$("#sr").value||0,capmsg="";
+ const cap=$("#st").value==="n"&&(s==="07.02"||s==="07.04"||s==="07.05"||ccl==="200046");
+ if(cap&&cr>deb){cr=deb;capmsg=" (limitado ao débito: art. 255, §5º da LC 214)"}
+ const liq=deb-cr;
+ const tot=vIss+pis+cof+irpj+csll;
+ out.innerHTML=`<div class="scroll"><table><thead><tr><th>Tributo</th><th class="n">Base</th><th class="n">Alíquota efetiva</th><th class="n">Valor</th></tr></thead><tbody>
+ <tr><td>ISS${ded?" (base sem materiais)":""}</td><td class="n">${fmt(bIss)}</td><td class="n">${pct(iss)}</td><td class="n">${fmt(vIss)}</td></tr>
+ <tr><td>PIS (cumulativo)</td><td class="n">${fmt(V)}</td><td class="n">0,65%</td><td class="n">${fmt(pis)}</td></tr>
+ <tr><td>COFINS (cumulativo)</td><td class="n">${fmt(V)}</td><td class="n">3,00%</td><td class="n">${fmt(cof)}</td></tr>
+ <tr><td>IRPJ (${pct(pr.i)} × 15%)</td><td class="n">${fmt(V*pr.i)}</td><td class="n">${pct(pr.i*.15)}</td><td class="n">${fmt(irpj)}</td></tr>
+ <tr><td>CSLL (${pct(pr.c)} × 9%)</td><td class="n">${fmt(V*pr.c)}</td><td class="n">${pct(pr.c*.09)}</td><td class="n">${fmt(csll)}</td></tr>
+ <tr><th>Total sem IBS/CBS</th><th></th><th class="n">${pct(V?tot/V:0)}</th><th class="n">${fmt(tot)}</th></tr></tbody></table></div>
+ <div class="box"><h3>IBS e CBS (${y==="2026"?"2026, valores de teste":"alíquotas informadas"})</h3><div class="kv"><div>cClassTrib / redução</div><div>${ccl} · ${esc(red(ccl))}</div><div>Débito de CBS</div><div>${fmt(dCBS)}</div><div>Débito de IBS</div><div>${fmt(dIBS)}</div><div>Crédito de materiais</div><div>${fmt(cr)}${capmsg}</div><div>Saldo a pagar (negativo = saldo credor)</div><div><b>${fmt(liq)}</b></div></div>
+ <p class="note">${y==="2026"?"Em 2026 o IBS (0,1%, art. 343) e a CBS (0,9%, art. 346) são de teste e compensam PIS/COFINS (art. 348). Cumprindo as obrigações acessórias, fica dispensado o recolhimento (art. 348, §1º), então não some este valor ao total.":"Informe as alíquotas de referência vigentes. O PIS/COFINS deixa de existir a partir de 2027 e a CBS o substitui."}</p></div>
+ <p class="note">${esc(presuncao(s).t)} O adicional de 10% de IRPJ (base presumida trimestral acima de R$ 60.000) não está incluído. ${ded?"Dedução de material do ISS: LC 116, art. 7º, §2º, I.":""}</p>`}
+
+/* ---------- auditor ---------- */
+function buildAud(){
+ const p=$("#p-auditor");
+ p.innerHTML=`<h2>Auditor de NFS-e (XML)</h2><p class="sub">Cole o XML ou escolha um ou mais arquivos. A análise acontece no seu navegador.</p>
+ <div class="row"><div><label for="af">Arquivos XML</label><input id="af" type="file" accept=".xml,text/xml" multiple></div></div>
+ <label for="ax">Ou cole o XML</label><textarea id="ax" placeholder="&lt;NFSe&gt; ... &lt;/NFSe&gt;"></textarea>
+ <p><button class="go" id="ag">Auditar</button></p><div id="ar"></div>`;
+ $("#ag").onclick=async()=>{const docs=[];const fs=$("#af").files;for(const f of fs)docs.push([f.name,await f.text()]);if($("#ax").value.trim())docs.push(["XML colado",$("#ax").value]);
+  if(!docs.length){$("#ar").innerHTML='<div class="note">Nenhum XML informado.</div>';return}
+  $("#ar").innerHTML=docs.map(([n,t])=>auditar(n,t)).join("")}}
+function tx(doc,tag,pred){const l=[...doc.getElementsByTagNameNS("*",tag)].filter(e=>!pred||pred(e));return l.length?l[0].textContent.trim():""}
+function auditar(nome,xml){
+ const doc=new DOMParser().parseFromString(xml,"application/xml");
+ if(doc.getElementsByTagName("parsererror").length)return `<div class="box"><h3>${esc(nome)}</h3><span class="pill err">ERRO</span> XML inválido ou malformado.</div>`;
+ const g=(t,p)=>tx(doc,t,p),F=[];const add=(k,m)=>F.push([k,m]);
+ const cod=g("cTribNac"),nbs=g("cNBS"),ind=g("cIndOp"),ccl=g("cClassTrib"),cstI=g("CST",e=>e.parentElement&&e.parentElement.localName==="trib"),cstP=g("CST",e=>e.parentElement&&e.parentElement.localName==="piscofins");
+ const tb=g("tribISSQN"),tr=g("tpRetISSQN"),al=g("pAliq"),vs=g("vServ"),obra=doc.getElementsByTagNameNS("*","obra").length>0,cobra=g("cObra"),ccib=g("cCIB");
+ const r=cod?ct(cod):null;
+ if(!cod)add("err","cTribNac ausente.");else if(!r)add("err",`cTribNac ${esc(cod)} não existe na lista nacional.`);else add("ok",`cTribNac ${fmtC(cod)}: ${esc(dd(r[1]).slice(0,90))}`);
+ if(!doc.getElementsByTagNameNS("*","IBSCBS").length)add("err","Grupo IBSCBS ausente. Os campos de IBS/CBS são obrigatórios na NFS-e Nacional (conforme o leiaute, desde 01/10/2026).");
+ if(!ind)add("err","cIndOp ausente.");
+ if(!cstI)add("err","CST do IBS/CBS ausente.");
+ if(!ccl)add("err","cClassTrib ausente.");
+ if(!nbs)add("err","cNBS ausente (campo obrigatório na emissão).");
+ if(r){const s=sub(cod),o=cclOpts(r),nb=nbsList(cod);
+  let nbr=null;if(nbs){nbr=nb.find(x=>x[0]===nbs.replace(/\D/g,""));if(!nbr)add("err",`NBS ${esc(nbs)} não pertence ao subitem ${s} no Anexo VIII.`);else add("ok",`NBS ${nbsF(nbr[0])}: ${esc(dd(nbr[1]))}`)}
+  const permit=nbr?(D.L[nbr[3]]||[]):o;
+  if(ccl){if(permit.length&&!permit.includes(ccl))add("err",`cClassTrib ${esc(ccl)} não consta entre as opções ${nbr?"deste NBS":"do subitem"} (${permit.join(", ")}).`);else if(!permit.length)add("info","Sem cClassTrib no Anexo VIII para este serviço; conferir na tabela oficial.");else add("ok",`cClassTrib ${esc(ccl)} permitido (${esc(red(ccl))}).`);
+   if(cstI&&cstI!==ccl.slice(0,3))add("err",`CST ${esc(cstI)} diverge dos 3 primeiros dígitos do cClassTrib (${ccl.slice(0,3)}).`);else if(cstI)add("ok",`CST IBS/CBS ${esc(cstI)} coerente com o cClassTrib.`);
+   if(ATEN[ccl])add("warn",esc(ATEN[ccl]))}
+  const indOk=nbr?[(D.I[nbr[2]]||[])[0]].filter(Boolean):(D.I[r[4]]||[]);
+  if(ind&&indOk.length&&!indOk.includes(ind))add("warn",`cIndOp ${esc(ind)} difere do esperado no Anexo VIII (${indOk.join(", ")}).`);else if(ind)add("ok",`cIndOp ${esc(ind)} conforme o Anexo VIII.`);
+  if(r[3]==="O"){if(!obra||!cobra||!ccib)add("err","Serviço de obra: faltam dados do grupo OBRA (cObra/CNO, cCIB ou o próprio grupo).");else add("ok","Grupo OBRA informado (cObra e cCIB).")}
+  if(al){const a=parseFloat(al);if(!isNaN(a)&&!["07.02","07.05","16.01"].includes(s)&&(a<2||a>5))add("warn",`Alíquota de ISS ${a}% fora da faixa de 2% a 5% (LC 116, arts. 8º e 8º-A).`)}
+  if(RESP.has(s)&&tr==="1")add("info","Subitem com tomador PJ responsável pelo ISS (art. 6º, §2º, II): conferir se o tpRetISSQN = 1 (não retido) está correto.");
+  if((s==="07.02"||s==="07.05")&&vs)add("info","7.02/7.05: o ISS pode excluir o valor dos materiais fornecidos pelo prestador (art. 7º, §2º, I). Conferir a base de cálculo.")}
+ if(cstP===""&&doc.getElementsByTagNameNS("*","piscofins").length===0)add("info","Grupo PIS/COFINS não informado.");
+ const order={err:0,warn:1,info:2,ok:3},cnt={err:0,warn:0};F.forEach(f=>{if(cnt[f[0]]!==undefined)cnt[f[0]]++});
+ F.sort((a,b)=>order[a[0]]-order[b[0]]);
+ const lab={err:"ERRO",warn:"ALERTA",info:"INFO",ok:"OK"};
+ return `<div class="box"><h3>${esc(nome)} <span class="pill ${cnt.err?"err":cnt.warn?"warn":"ok"}">${cnt.err} erro(s) · ${cnt.warn} alerta(s)</span></h3>${F.map(f=>`<div class="f"><span class="pill ${f[0]}">${lab[f[0]]}</span><div>${f[1]}</div></div>`).join("")}</div>`}
+
+/* ---------- início ---------- */
+fetch("data.json").then(r=>r.json()).then(d=>{D=d;$("#fonte").textContent="Dados: "+d.fontes+". Atualizado em "+d.v.split("-").reverse().join("/")+".";buildConsulta();buildSim();buildAud();if(window.buildGuia)buildGuia();if(window.buildLeis)buildLeis();if(window.buildSimples)buildSimples();const h=location.hash.slice(1);const sp=new URLSearchParams(location.search);if(["guia","consulta","simulador","auditor","leis","simples"].includes(h))open(h);else if(sp.get("s")||sp.get("q"))open("guia")}).catch(()=>{$("#grid").insertAdjacentHTML("afterend",'<div class="panel">Não foi possível carregar os dados (data.json).</div>')});
+</script>
+<script src="guia.js"></script>
+<script src="leis.js"></script>
+<script>(()=>{const SH={
+ guia:{t:"Ficha tributária unificada",s:"07.02 · Construção civil · Maceió/AL",rows:[["ISS","2,5% · cód. 0702020"],["INSS retido","11% · dedução de material e equipamento"],["IRPJ / CSLL","Presunção 8% / 12%"],["PIS / COFINS","0,65% / 3% (Presumido)"],["IBS / CBS 2026","0,1% / 0,9%"]],b:["Códigos da NFS-e no topo","Base legal com link em cada linha","Pode ser Simples? MEI?"]},
+ sim:{t:"Simulação em reais",s:"Nota de R$ 100.000 · material R$ 30.000",rows:[["Simples (Anexo IV)","R$ 4.008,80"],["Lucro Presumido","R$ 1.750,00 de ISS"],["INSS retido","R$ 7.700,00"],["Menor carga","Lucro Presumido"]],b:["Seis perguntas, uma por vez","Quem contrata muda as retenções","Compare os três regimes"]},
+ simples:{t:"Anexo III · 3ª faixa",s:"Receita 12 meses R$ 500.000",rows:[["Alíquota nominal","13,5%"],["Parcela a deduzir","R$ 17.640,00"],["Alíquota efetiva","9,972%"],["Fator R","20% → Anexo V"]],b:["Anexos I a V completos","Partilha por tributo","MEI: pode ou não pode"]},
+ leis:{t:"LC 116/2003",s:"Lei Complementar · 31/07/2003 · vigente",rows:[["Tributos","ISS"],["Aplica-se a","Serviço · Importação · Exportação"],["Casos","Lista de serviços, local, base, 2% a 5%"],["Fonte","planalto.gov.br"]],b:["84 normas com link oficial","Federal, estadual e municipal","Busca por tema e tributo"]},
+ consulta:{t:"Item 07.02.01",s:"NFS-e Nacional · Anexo VIII",rows:[["cTribNac","070201"],["NBS","1.2101.11.00"],["cIndOp","030101"],["cClassTrib","200048 · redução 50%"]],b:["Todos os itens 1 a 40.01","Campos obrigatórios da DPS","Grupo obra e evento"]},
+ auditor:{t:"Auditoria da NFS-e 1149",s:"2 erros · 1 alerta",rows:[["cTribNac","✓ 070202"],["cClassTrib","✗ 000001 (cabe 200048)"],["NBS","✓ 1.2101.11.00"],["Grupo obra","⚠ CNO ausente"]],b:["Cole o XML da nota","Erro e alerta por campo","Pronto para corrigir no emissor"]}};
+const shot=document.getElementById("tshot");const draw=k=>{const d=SH[k]||SH.guia;shot.innerHTML=`<div class="bar"><i></i><i></i><i></i></div><h3>${d.t}</h3><p class="sub">${d.s}</p><table><thead><tr><th>Campo</th><th style="text-align:right">Resultado</th></tr></thead><tbody>${d.rows.map(r=>`<tr><td>${r[0]}</td><td><span class="k">${r[1]}</span></td></tr>`).join("")}</tbody></table><ul>${d.b.map(x=>`<li>${x}</li>`).join("")}</ul>`};
+draw("guia");
+document.querySelectorAll("#tour details").forEach(d=>{d.addEventListener("toggle",()=>{if(d.open){document.querySelectorAll("#tour details").forEach(o=>{if(o!==d)o.open=false});draw(d.dataset.img)}});
+ d.querySelector("button").onclick=()=>{const t=d.dataset.t;const w=document.getElementById("wiz");if(t==="guia"||t==="sim"){if(w&&!w.classList.contains("hide")){w.scrollIntoView({behavior:"smooth",block:"start"});const b=w.querySelector('[data-k=servico]');if(b)b.click();const m=w.querySelector(`[data-m=${t==="sim"?"sim":"ficha"}]`);if(m)setTimeout(()=>m.click(),50)}else{const mb=document.querySelector(`.modo button[data-modo=${t==="sim"?"sim":"ficha"}]`);if(mb)mb.click();if(typeof open==="function")open("guia")}return}
+ if(w&&!w.classList.contains("hide")){w.classList.add("hide");document.getElementById("wbar").style.display=""}if(typeof open==="function")open(t)}});})();</script>
+<script>(()=>{const G=[
+ {g:"Serviços",t:[["Ficha do serviço","códigos, alíquotas e lei, sem preencher nada",{t:"guia",modo:"ficha"}],["Simular valores","imposto em reais nos três regimes",{t:"guia",modo:"sim"}],["Deduções e retenções","INSS 11%, IRRF/CSRF, materiais",{t:"guia",modo:"ficha",sec:"sec-ded"}],["ISS do meu município","Maceió, São Paulo e alíquota manual",{t:"guia",modo:"ficha",sec:"sec-mun"}],["Exportar ou importar serviço","ISS, PIS/COFINS, IRRF, IBS/CBS",{t:"guia",modo:"ficha",op:"exp"}]]},
+ {g:"Simples Nacional e MEI",t:[["Anexos I a V","faixas, alíquota nominal, dedução, partilha",{t:"simples"}],["Calcular alíquota efetiva","pela receita de 12 meses e Fator R",{t:"simples",sel:"#snrb"}],["Pode ser Simples? Pode ser MEI?","enquadramento e quem não pode",{t:"guia",modo:"ficha",sec:"sec-enq"}]]},
+ {g:"Legislação",t:[["Leis federais","CF, LC 116, LC 123, LC 214, Receita Federal",{t:"leis",esf:"federal"}],["Leis municipais","ISS de Maceió e São Paulo",{t:"leis",esf:"municipal"}],["Reforma tributária IBS/CBS","EC 132 e LC 214",{t:"leis",q:"IBS"}],["INSS e retenções","Lei 8.212, Decreto 3.048, IN 2.110",{t:"leis",trib:"INSS"}],["Linha do tempo completa","85 normas com link oficial",{t:"leis"}]]},
+ {g:"Ferramentas",t:[["Consulta de códigos","lista LC 116 com NBS, cClassTrib, cIndOp",{t:"consulta"}],["Auditor de NFS-e (XML)","confere a nota campo a campo",{t:"auditor"}],["Imprimir / PDF da ficha","para entregar ao cliente",{print:true}]]},
+ {g:"Produtos (em breve)",t:[["Venda de mercadoria","NCM, CFOP, CST/CSOSN, ICMS, IPI",{off:true}],["ICMS-ST e DIFAL","por Estado de origem e destino",{off:true}]]}];
+const body=document.getElementById("menu-body");
+body.innerHTML=G.map(g=>`<div class="mg"><h3>${g.g}</h3><div class="tiles">${g.t.map((x,i)=>`<button type="button" class="tile${x[2].off?" off":""}" data-g="${g.g}" data-i="${i}"><i>${x[2].off?"…":x[2].t==="leis"?"§":x[2].t==="simples"?"%":x[2].print?"⎙":x[2].t==="auditor"?"✓":"$"}</i><span><b>${x[0]}</b><small>${x[1]}</small></span></button>`).join("")}</div></div>`).join("")+`<div class="pills"><button data-p="leis">Legislação</button><button data-p="mcz">Lista de atividades · Maceió</button><button data-p="sp">Lista de atividades · São Paulo</button><button data-p="fontes">Fontes oficiais</button></div>`;
+const hideWiz=()=>{const w=document.getElementById("wiz");if(w&&!w.classList.contains("hide")){w.classList.add("hide");document.getElementById("wbar").style.display=""}};
+const run=a=>{if(a.off)return;if(a.print){window.print();return}
+ if(a.t==="guia"){const mb=document.querySelector(`.modo button[data-modo=${a.modo||"ficha"}]`);if(mb)mb.click();if(a.op){const go=document.getElementById("go");if(go){go.value=a.op;go.dispatchEvent(new Event("input"))}}
+  const gc=document.getElementById("gc");if(gc&&gc.value){hideWiz();open("guia");if(a.sec)setTimeout(()=>{const t=document.getElementById(a.sec);if(t)t.scrollIntoView({behavior:"smooth",block:"start"})},150)}
+  else{const w=document.getElementById("wiz");w.classList.remove("hide");w.querySelector("[data-k=servico]").click();setTimeout(()=>{const m=w.querySelector(`[data-m=${a.modo||"ficha"}]`);if(m)m.click();w.scrollIntoView({behavior:"smooth",block:"start"})},30);window.__afterPick=a.sec||null}
+  return}
+ hideWiz();open(a.t);
+ if(a.t==="leis"&&window.leisFiltro)setTimeout(()=>leisFiltro({esf:a.esf,q:a.q,trib:a.trib}),50);
+ if(a.sel)setTimeout(()=>{const e=document.querySelector(a.sel);if(e){e.scrollIntoView({behavior:"smooth",block:"center"});e.focus()}},150)};
+body.querySelectorAll(".tile").forEach(b=>b.onclick=()=>{const g=G.find(x=>x.g===b.dataset.g);run(g.t[+b.dataset.i][2])});
+body.querySelectorAll(".pills button").forEach(b=>b.onclick=()=>{const p=b.dataset.p;if(p==="leis")run({t:"leis"});if(p==="fontes")run({t:"leis",tipo:"Jurisprudência"});
+ if(p==="mcz"||p==="sp"){const uf=p==="mcz"?"AL":"SP";run({t:"guia",modo:"ficha",sec:"sec-mun"});const g=document.getElementById("guf");if(g){g.value=uf;g.dispatchEvent(new Event("change"))}}});
+})();</script>
+<script>document.getElementById("hero-go").onclick=()=>{const w=document.getElementById("wiz");const t=w&&!w.classList.contains("hide")?w:document.getElementById("p-guia");(t||w).scrollIntoView({behavior:"smooth",block:"start"})};document.getElementById("hero-leis").onclick=e=>{e.preventDefault();if(typeof open==="function"){const w=document.getElementById("wiz");if(w&&!w.classList.contains("hide")){w.classList.add("hide");document.getElementById("wbar").style.display=""}open("leis")}};</script>
+</body>
+</html>

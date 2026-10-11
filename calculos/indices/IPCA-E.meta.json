@@ -1,0 +1,10 @@
+{
+  "indice": "IPCA-E",
+  "fonte": "IPCA-E, variação % mensal (IBGE); API SGS série 10764",
+  "url": "https://api.bcb.gov.br/dados/serie/bcdata.sgs.10764/dados?formato=json&dataInicial=...&dataFinal=...",
+  "meses": 417,
+  "primeiro": "1992-01",
+  "ultimo": "2026-09",
+  "baixado_em": "2026-10-11T13:29:57-03:00",
+  "sha256": "4afefe58d1259917e49c2726e0817af959f59af66343c6b147a4839bbcd95f9d"
+}

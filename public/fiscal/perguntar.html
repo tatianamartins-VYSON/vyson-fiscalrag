@@ -1,0 +1,95 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Vyson Fiscal · Perguntar</title>
+<meta name="description" content="FiscalRAG: pergunte em português e receba a resposta com a norma, o item da LC 116 ou o código municipal citado. Geração em GPU AMD (ROCm).">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Playfair+Display:wght@600;700&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#07132b;--card:#0e1f45;--ink:#fff;--mut:#c9d4ea;--line:#1e3566;--brand:#0047ab;--acc:#ff6b00;--acc2:#2a1a0a;--ok:#5fd3a5;--okbg:#10332a;--warn:#ffb020;--warnbg:#3a2a0a;color-scheme:dark}
+:root:not([data-theme="light"]){color-scheme:dark}
+@media (prefers-color-scheme: light){:root[data-theme="light"]{--bg:#f6f7fb;--card:#fff;--ink:#0b1430;--mut:#4a5572;--line:#d6dbe8;--acc2:#fff1e6;--okbg:#e6f7ef;--warnbg:#fff6e0;color-scheme:light}}
+*{box-sizing:border-box}
+body{margin:0;color:var(--ink);font:15px/1.6 Inter,system-ui,-apple-system,"Segoe UI",Roboto,Arial,sans-serif;background:radial-gradient(1200px 600px at 10% -10%,#0d2f7a 0%,transparent 60%),radial-gradient(900px 500px at 100% 0%,#3a1a00 0%,transparent 55%),var(--bg);min-height:100vh}
+header{background:linear-gradient(100deg,#0047ab 0%,#0a1f4d 55%,#07132b 100%);border-bottom:1px solid rgba(255,140,0,.35);box-shadow:0 10px 40px rgba(0,0,0,.45);padding:22px 16px;color:#fff}
+.wrap{max-width:960px;margin:0 auto;padding:0 16px}
+header h1{margin:0;font:700 26px/1.2 "Playfair Display",Georgia,serif}header p{margin:4px 0 0;color:#c9d4ea;font-size:13px}
+header a{color:#ffa500;font-weight:600;text-decoration:none}
+.badge{display:inline-block;font-size:11px;font-weight:700;padding:3px 10px;border-radius:99px;background:linear-gradient(90deg,#ff6b00,#ffa500);color:#fff;margin-left:8px;vertical-align:middle}
+main{max-width:960px;margin:22px auto;padding:0 16px;display:grid;gap:16px}
+.panel{background:linear-gradient(180deg,rgba(14,31,69,.95),rgba(9,20,48,.95));border:1px solid rgba(255,255,255,.1);border-radius:18px;padding:22px;box-shadow:0 20px 60px rgba(0,0,0,.45)}
+.panel h2{margin:0 0 4px;font:700 22px/1.2 "Playfair Display",Georgia,serif;color:#ff8c00}.sub{color:var(--mut);font-size:13px;margin:0 0 14px}
+textarea{width:100%;min-height:84px;padding:12px;border:1px solid rgba(255,255,255,.12);border-radius:10px;background:rgba(3,10,30,.8);color:#fff;font:inherit;resize:vertical}
+textarea:focus{outline:2px solid var(--acc)}
+.row{display:flex;gap:10px;align-items:center;flex-wrap:wrap;margin-top:10px}
+button.go{background:linear-gradient(90deg,#ff6b00,#ffa500);color:#fff;border:0;border-radius:10px;padding:11px 18px;font:inherit;font-weight:700;cursor:pointer;box-shadow:0 8px 24px rgba(255,107,0,.35)}
+button.go[disabled]{opacity:.6;cursor:wait}
+.chips{display:flex;flex-wrap:wrap;gap:8px;margin:10px 0 0}.chips button{background:rgba(255,107,0,.12);border:1px solid rgba(255,140,0,.4);color:#fff;border-radius:99px;padding:7px 14px;font:inherit;font-size:13px;cursor:pointer}.chips button:hover{background:#ff6b00}
+.ans{white-space:pre-wrap;font-size:15px;line-height:1.7}
+.src{border:1px solid rgba(255,255,255,.08);border-left:3px solid #ff6b00;border-radius:12px;padding:12px 14px;margin-top:10px;background:rgba(255,255,255,.025)}
+.src b{color:#ffa500}.src small{color:var(--mut);display:block;margin-top:4px}.src a{color:#ffa500;font-weight:600}
+.meta{font-size:12px;color:var(--mut);margin-top:12px;display:flex;gap:14px;flex-wrap:wrap}
+.pill{font-size:11px;font-weight:700;padding:2px 10px;border-radius:99px}.ok{background:var(--okbg);color:var(--ok)}.warn{background:var(--warnbg);color:var(--warn)}
+footer{color:var(--mut);font-size:12px;text-align:center;padding:0 16px 30px}
+</style>
+</head>
+<body>
+<header><div class="wrap">
+  <h1>Vyson Fiscal · Perguntar <span class="badge">FiscalRAG</span></h1>
+  <p>Pergunte em português. A resposta vem com a norma, o item da LC 116 ou o código municipal citado, para auditoria. <a href="/fiscal/">← Guia por serviço</a></p>
+</div></header>
+<main>
+  <section class="panel">
+    <h2>Sua pergunta</h2>
+    <p class="sub">Base: 85 normas federais e jurisprudência, LC 116 completa, 906 códigos de ISS de Maceió e 410 de São Paulo, classificações IBS/CBS.</p>
+    <textarea id="q" placeholder="Ex.: Qual a alíquota de ISS em Maceió para desenvolvimento de software?"></textarea>
+    <div class="row">
+      <button class="go" id="go">Perguntar</button>
+      <span id="st" class="pill warn" hidden>consultando…</span>
+    </div>
+    <div class="chips" id="ex">
+      <button>Qual a alíquota de ISS em Maceió para programação de software?</button>
+      <button>Exportação de serviço paga ISS? Qual a base legal?</button>
+      <button>Em qual subitem da LC 116 entra consulta médica?</button>
+      <button>Código de ISS em São Paulo para empreitada de obra hidráulica</button>
+      <button>Serviço de engenharia industrial: qual item da LC 116 e alíquota em Maceió?</button>
+    </div>
+  </section>
+  <section class="panel" id="out" hidden>
+    <h2>Resposta</h2>
+    <div class="ans" id="ans"></div>
+    <div id="srcs"></div>
+    <div class="meta" id="meta"></div>
+  </section>
+</main>
+<footer>Vyson Fyconsult · FiscalRAG para o AMD Developer Hackathon ACT III · geração em GPU AMD (ROCm + vLLM), recuperação BM25 na borda. Conteúdo informativo; confira sempre a norma oficial.</footer>
+<script>
+const $=s=>document.querySelector(s);
+const esc=s=>String(s??"").replace(/[&<>"]/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
+async function ask(q){
+  $("#go").disabled=true;$("#st").hidden=false;$("#out").hidden=false;$("#ans").textContent="";$("#srcs").innerHTML="";$("#meta").innerHTML="";
+  try{
+    const r=await fetch("/api/fiscal_ask",{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify({q})});
+    const j=await r.json();
+    if(j.erro){$("#ans").textContent=j.erro;return}
+    $("#ans").textContent=j.texto||"";
+    const list=j.citadas||j.fontes||[];
+    $("#srcs").innerHTML=list.map(f=>`<div class="src"><b>${esc(f.titulo)}</b>${f.url?` · <a href="${esc(f.url)}" target="_blank" rel="noopener">abrir norma oficial</a>`:""}<small>${esc(f.trecho)}</small></div>`).join("");
+    const m=[];
+    if(j.modelo)m.push(`<span class="pill ok">${esc(j.gpu||"GPU AMD")}</span>`);
+    if(j.modelo)m.push(`modelo ${esc(j.modelo)} · geração ${j.latencia_s}s`);
+    m.push(`recuperação ${j.recuperacao_s}s em ${j.corpus} documentos`);
+    if(j.aviso)m.push(`<span class="pill warn" title="${esc(j.aviso)}">resposta montada direto das fontes oficiais (IA em GPU AMD em pausa)</span>`);
+    $("#meta").innerHTML=m.join(" · ");
+  }catch(e){$("#ans").textContent="Falha ao consultar: "+e}
+  finally{$("#go").disabled=false;$("#st").hidden=true}
+}
+$("#go").onclick=()=>{const q=$("#q").value.trim();if(q.length>3)ask(q)};
+$("#q").addEventListener("keydown",e=>{if(e.key==="Enter"&&(e.ctrlKey||e.metaKey))$("#go").click()});
+$("#ex").addEventListener("click",e=>{if(e.target.tagName==="BUTTON"){$("#q").value=e.target.textContent;ask(e.target.textContent)}});
+const u=new URLSearchParams(location.search).get("q");if(u){$("#q").value=u;ask(u)}
+</script>
+</body>
+</html>

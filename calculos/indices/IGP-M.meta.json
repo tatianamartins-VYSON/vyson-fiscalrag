@@ -1,0 +1,10 @@
+{
+  "indice": "IGP-M",
+  "fonte": "IGP-M, variação % mensal (FGV); API SGS série 189",
+  "url": "https://api.bcb.gov.br/dados/serie/bcdata.sgs.189/dados?formato=json&dataInicial=...&dataFinal=...",
+  "meses": 448,
+  "primeiro": "1989-06",
+  "ultimo": "2026-09",
+  "baixado_em": "2026-10-11T13:30:08-03:00",
+  "sha256": "d6bba1b4f944f0ea773d033ee594ff16266996c8ef5a8ccc3c4213f99e2ab559"
+}

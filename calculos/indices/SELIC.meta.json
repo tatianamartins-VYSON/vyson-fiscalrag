@@ -1,0 +1,10 @@
+{
+  "indice": "SELIC",
+  "fonte": "SELIC acumulada no mês, % (BCB); API SGS série 4390",
+  "url": "https://api.bcb.gov.br/dados/serie/bcdata.sgs.4390/dados?formato=json&dataInicial=...&dataFinal=...",
+  "meses": 483,
+  "primeiro": "1986-08",
+  "ultimo": "2026-10",
+  "baixado_em": "2026-10-11T13:30:10-03:00",
+  "sha256": "170ea6079fa558dda35c0b4960cfda0cc1c6adb770111e6e4cbbb0b547a3247e"
+}

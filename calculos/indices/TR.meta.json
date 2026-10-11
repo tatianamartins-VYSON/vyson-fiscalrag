@@ -1,0 +1,10 @@
+{
+  "indice": "TR",
+  "fonte": "TR mensal, % (BCB); API SGS série 7811",
+  "url": "https://api.bcb.gov.br/dados/serie/bcdata.sgs.7811/dados?formato=json&dataInicial=...&dataFinal=...",
+  "meses": 428,
+  "primeiro": "1991-03",
+  "ultimo": "2026-10",
+  "baixado_em": "2026-10-11T13:30:13-03:00",
+  "sha256": "8c9a36e0b7f701ef12254918c00bfb87a885f2baecdad237e45d75ba09fe122f"
+}
