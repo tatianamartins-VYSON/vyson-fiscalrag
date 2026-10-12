@@ -4,7 +4,7 @@ Ask a Brazilian tax question in plain Portuguese and get the rate, the service c
 **every statement cited to an official source**. Built for the AMD Developer Hackathon ACT III
 (lablab.ai) by Tatiana Tenório, accountant and court expert (Vyson Fyconsult, Maceió, Brazil).
 
-- Pitch video (2 min 19 s): https://youtu.be/Kjyhllysrgs
+- Pitch video (2 min 49 s): https://youtu.be/HM0BtbyQfZ4
 - Home with all modules: https://tatianabot-dashboard.vercel.app/fiscal
 - Live demo: https://tatianabot-dashboard.vercel.app/fiscal/perguntar
 - Monetary-correction calculator (official indices): https://tatianabot-dashboard.vercel.app/fiscal/calculadora
