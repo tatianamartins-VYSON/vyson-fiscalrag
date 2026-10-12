@@ -8,7 +8,7 @@ Ask a Brazilian tax question in plain Portuguese and get the rate, the service c
 - Live demo: https://tatianabot-dashboard.vercel.app/fiscal/perguntar
 - Monetary-correction calculator (official indices): https://tatianabot-dashboard.vercel.app/fiscal/calculadora
 - Legislation updates (agent, every 6 h): https://tatianabot-dashboard.vercel.app/fiscal/novidades
-- Companion app by the same author, Precatórios Nacional (court-ordered debt calculations, in testing): https://calculadora-precatorios-nacional.vercel.app
+- Companion app by the same author, Precatórios Nacional (court-ordered debt calculations, in testing): https://calculadora-precatorios-nacional.vercel.app/app/
 
 ## How it works
 
