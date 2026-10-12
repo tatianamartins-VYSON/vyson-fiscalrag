@@ -28,7 +28,17 @@ browser ─► /fiscal/perguntar (static page)
 
 Production test on an **AMD Instinct MI350X**: "ISS on software in Maceió?" → **2%, code 0102010**, cited, in **0.77 s**.
 
-## Run
+## Run in a container
+
+```bash
+docker build -t vyson-fiscalrag .
+docker run -p 8080:8080 -e RAG_BASE_URL=http://<amd-gpu>:8000/v1 -e RAG_API_KEY=... \
+  -e RAG_MODEL=Qwen/Qwen2.5-7B-Instruct vyson-fiscalrag
+# open http://localhost:8080/fiscal/perguntar
+```
+Without `RAG_BASE_URL` it still answers by quoting the official passages. Secrets only come from environment variables.
+
+## Run on the AMD GPU
 
 1. **AMD GPU** (ROCm): `VLLM_API_KEY=... bash gpu_amd/serve_vllm.sh` (Qwen2.5-7B-Instruct on vLLM, port 8000).
 2. **API** environment variables: `RAG_BASE_URL=http://<gpu>:8000/v1`, `RAG_API_KEY`, `RAG_MODEL=Qwen/Qwen2.5-7B-Instruct`, `RAG_GPU="AMD Instinct MI350X (ROCm, vLLM)"`.
