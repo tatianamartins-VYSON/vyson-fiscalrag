@@ -5,6 +5,7 @@ Ask a Brazilian tax question in plain Portuguese and get the rate, the service c
 (lablab.ai) by Tatiana Tenório, accountant and court expert (Vyson Fyconsult, Maceió, Brazil).
 
 - Pitch video (2 min 19 s): https://youtu.be/Kjyhllysrgs
+- Home with all modules: https://tatianabot-dashboard.vercel.app/fiscal/painel
 - Live demo: https://tatianabot-dashboard.vercel.app/fiscal/perguntar
 - Monetary-correction calculator (official indices): https://tatianabot-dashboard.vercel.app/fiscal/calculadora
 - Legislation updates (agent, every 6 h): https://tatianabot-dashboard.vercel.app/fiscal/novidades
