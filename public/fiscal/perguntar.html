@@ -8,19 +8,19 @@
 <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Playfair+Display:wght@600;700&display=swap" rel="stylesheet">
 <style>
-:root{--bg:#07132b;--card:#0e1f45;--ink:#fff;--mut:#c9d4ea;--line:#1e3566;--brand:#0047ab;--acc:#ff6b00;--acc2:#2a1a0a;--ok:#5fd3a5;--okbg:#10332a;--warn:#ffb020;--warnbg:#3a2a0a;color-scheme:dark}
+:root{--bg:#04161c;--card:#0b2e38;--ink:#fff;--mut:#c5d8de;--line:#1d4a55;--brand:#0b4a5a;--acc:#ff6b00;--acc2:#2a1a0a;--ok:#5fd3a5;--okbg:#10332a;--warn:#ffb020;--warnbg:#3a2a0a;color-scheme:dark}
 :root:not([data-theme="light"]){color-scheme:dark}
 @media (prefers-color-scheme: light){:root[data-theme="light"]{--bg:#f6f7fb;--card:#fff;--ink:#0b1430;--mut:#4a5572;--line:#d6dbe8;--acc2:#fff1e6;--okbg:#e6f7ef;--warnbg:#fff6e0;color-scheme:light}}
 *{box-sizing:border-box}
-body{margin:0;color:var(--ink);font:15px/1.6 Inter,system-ui,-apple-system,"Segoe UI",Roboto,Arial,sans-serif;background:radial-gradient(1200px 600px at 10% -10%,#0d2f7a 0%,transparent 60%),radial-gradient(900px 500px at 100% 0%,#3a1a00 0%,transparent 55%),var(--bg);min-height:100vh}
-header{background:linear-gradient(100deg,#0047ab 0%,#0a1f4d 55%,#07132b 100%);border-bottom:1px solid rgba(255,140,0,.35);box-shadow:0 10px 40px rgba(0,0,0,.45);padding:22px 16px;color:#fff}
+body{margin:0;color:var(--ink);font:15px/1.6 Inter,system-ui,-apple-system,"Segoe UI",Roboto,Arial,sans-serif;background:radial-gradient(1200px 600px at 10% -10%,#0e5566 0%,transparent 60%),radial-gradient(900px 500px at 100% 0%,#2a1a0a 0%,transparent 55%),var(--bg);min-height:100vh}
+header{background:linear-gradient(100deg,#0b4a5a 0%,#06262f 55%,#04161c 100%);border-bottom:1px solid rgba(255,140,0,.35);box-shadow:0 10px 40px rgba(0,0,0,.45);padding:22px 16px;color:#fff}
 .wrap{max-width:960px;margin:0 auto;padding:0 16px}
-header h1{margin:0;font:700 26px/1.2 "Playfair Display",Georgia,serif}header p{margin:4px 0 0;color:#c9d4ea;font-size:13px}
+header h1{margin:0;font:700 26px/1.2 "Playfair Display",Georgia,serif}header p{margin:4px 0 0;color:#c5d8de;font-size:13px}
 header a{color:#ffa500;font-weight:600;text-decoration:none}
 .badge{display:inline-block;font-size:11px;font-weight:700;padding:3px 10px;border-radius:99px;background:linear-gradient(90deg,#ff6b00,#ffa500);color:#fff;margin-left:8px;vertical-align:middle}
 main{max-width:960px;margin:22px auto;padding:0 16px;display:grid;gap:16px}
-.panel{background:linear-gradient(180deg,rgba(14,31,69,.95),rgba(9,20,48,.95));border:1px solid rgba(255,255,255,.1);border-radius:18px;padding:22px;box-shadow:0 20px 60px rgba(0,0,0,.45)}
-.panel h2{margin:0 0 4px;font:700 22px/1.2 "Playfair Display",Georgia,serif;color:#ff8c00}.sub{color:var(--mut);font-size:13px;margin:0 0 14px}
+.panel{background:linear-gradient(180deg,rgba(11,46,56,.95),rgba(4,22,28,.95));border:1px solid rgba(255,255,255,.1);border-radius:18px;padding:22px;box-shadow:0 20px 60px rgba(0,0,0,.45)}
+.panel h2{margin:0 0 4px;font:700 22px/1.2 "Playfair Display",Georgia,serif;color:#ff8c00}.sub{color:#c5d8de;font-size:13px;margin:0 0 14px}
 textarea{width:100%;min-height:84px;padding:12px;border:1px solid rgba(255,255,255,.12);border-radius:10px;background:rgba(3,10,30,.8);color:#fff;font:inherit;resize:vertical}
 textarea:focus{outline:2px solid var(--acc)}
 .row{display:flex;gap:10px;align-items:center;flex-wrap:wrap;margin-top:10px}
@@ -91,5 +91,6 @@ $("#q").addEventListener("keydown",e=>{if(e.key==="Enter"&&(e.ctrlKey||e.metaKey
 $("#ex").addEventListener("click",e=>{if(e.target.tagName==="BUTTON"){$("#q").value=e.target.textContent;ask(e.target.textContent)}});
 const u=new URLSearchParams(location.search).get("q");if(u){$("#q").value=u;ask(u)}
 </script>
+<script src="/fiscal/tema.js"></script>
 </body>
 </html>

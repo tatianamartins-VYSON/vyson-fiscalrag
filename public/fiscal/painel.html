@@ -34,7 +34,7 @@ footer{color:var(--mut);font-size:12.5px;margin-top:16px}footer a{color:#0b4a5a}
 .hnav{display:flex;gap:4px;overflow-x:auto;background:#0b4a5a;padding:0 12px;position:sticky;top:0;z-index:5}
 .hnav a{color:#e6f1f5;text-decoration:none;font-size:14px;font-weight:600;padding:12px 12px;white-space:nowrap;border-bottom:3px solid transparent}
 .hnav a:hover,.hnav a:focus,.hnav a.on{border-bottom-color:var(--or);color:#fff;outline:none}
-.a11y{position:fixed;right:0;top:50%;transform:translateY(-50%);display:flex;flex-direction:column;gap:4px;z-index:20}
+.a11y{position:fixed;right:0;top:110px;display:flex;flex-direction:column;gap:4px;z-index:20}
 .a11y button{width:42px;height:42px;border:0;border-radius:8px 0 0 8px;background:#0b6b7d;color:#fff;cursor:pointer;display:flex;align-items:center;justify-content:center}
 .a11y button:hover,.a11y button:focus{background:#0e8aa1;outline:2px solid #fff}.a11y svg{width:20px;height:20px}
 .ajuda{position:fixed;right:22px;bottom:22px;width:56px;height:56px;border-radius:50%;border:0;background:#ffc21a;color:#111;font-size:26px;font-weight:800;cursor:pointer;box-shadow:0 4px 14px rgba(0,0,0,.25);z-index:20}
@@ -50,7 +50,7 @@ body.espaco{line-height:1.9;letter-spacing:.03em}
 <body>
 <div class="aviso" id="aviso"><b>Vyson Fiscal.</b> Respostas com a lei citada e índices oficiais. Confira sempre a norma oficial antes de usar.<button type="button" aria-label="Fechar aviso" onclick="this.parentNode.remove()">×</button></div>
 <nav class="hnav" aria-label="Menu principal">
- <a class="on" href="/fiscal/painel.html">Início</a><a href="/fiscal/perguntar">Pergunte à IA</a><a href="/fiscal/#guia">Ficha do serviço</a><a href="/fiscal/#guia">Simulador</a><a href="/fiscal/#auditor">Auditor NFS-e</a><a href="/fiscal/calculadora">Calculadora</a><a href="/fiscal/#leis">Legislação</a><a href="/fiscal/novidades">Novidades</a>
+ <a class="on" href="/fiscal/painel">Início</a><a href="/fiscal/perguntar">Pergunte à IA</a><a href="/fiscal/#guia">Ficha do serviço</a><a href="/fiscal/#guia">Simulador</a><a href="/fiscal/#auditor">Auditor NFS-e</a><a href="/fiscal/calculadora">Calculadora</a><a href="/fiscal/#leis">Legislação</a><a href="/fiscal/novidades">Novidades</a>
 </nav>
 <div class="wrap">
 <aside aria-label="Menu">
@@ -79,7 +79,7 @@ body.espaco{line-height:1.9;letter-spacing:.03em}
 <div class="modal" id="modal" role="dialog" aria-modal="true" aria-labelledby="mt"><div>
  <h2 id="mt">Como usar o Vyson Fiscal</h2>
  <p><b>1.</b> Para uma dúvida rápida, abra <b>Pergunte à IA</b>: a resposta vem com a lei citada.<br><b>2.</b> Para um serviço completo, use a <b>Ficha do serviço</b>, com códigos, alíquotas e lei, e salve em PDF.<br><b>3.</b> Para valores, use o <b>Simulador</b> (três regimes) ou a <b>Atualização monetária</b> (índices oficiais).<br><b>4.</b> Para conferir uma nota, envie o XML no <b>Auditor de NFS-e</b>.<br><b>5.</b> Em <b>Novidades</b>, veja as leis novas que o agente encontrou nas últimas horas.</p>
- <p>Os botões da direita aumentam o texto, ativam o alto contraste, leem a página em voz alta e ajustam o espaçamento.</p>
+ <p>Os botões da direita aumentam o texto, ativam o alto contraste, leem a página em voz alta e ajustam o espaçamento. O botão azul com a mão traduz a página para Libras (VLibras, do governo federal).</p>
  <button class="btn" type="button" id="fechar">Entendi</button>
 </div></div>
 <script>
@@ -143,5 +143,8 @@ aler.onclick=()=>{if(!("speechSynthesis" in window))return alert("Seu navegador 
 ajuda.onclick=()=>modal.classList.add("on");fechar.onclick=()=>modal.classList.remove("on");modal.onclick=e=>{if(e.target===modal)modal.classList.remove("on")};
 document.addEventListener("keydown",e=>{if(e.key==="Escape")modal.classList.remove("on")});
 </script>
+<div vw class="enabled"><div vw-access-button class="active"></div><div vw-plugin-wrapper><div class="vw-plugin-top-wrapper"></div></div></div>
+<script src="https://vlibras.gov.br/app/vlibras-plugin.js"></script>
+<script>try{new window.VLibras.Widget("https://vlibras.gov.br/app")}catch(e){}</script>
 </body>
 </html>

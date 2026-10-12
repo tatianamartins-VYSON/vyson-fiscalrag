@@ -2,17 +2,17 @@
 <html lang="pt-BR"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
 <title>Vyson Fiscal · Calculadora de atualização monetária</title>
 <style>
-:root{--bg:#081127;--card:#0f1d3d;--ink:#eef2ff;--mut:#9fb0d6;--line:#22345f;--lar:#ff8000}
+:root{--bg:#04161c;--card:#0b2e38;--ink:#eef2ff;--mut:#a9c4cf;--line:#1d4a55;--lar:#ff8000}
 *{box-sizing:border-box}body{margin:0;font:15px/1.55 Inter,system-ui,sans-serif;background:var(--bg);color:var(--ink)}
-header{padding:22px 16px;background:linear-gradient(90deg,#0b2a6b,#081127)}header h1{margin:0;font-size:22px}header p{margin:4px 0 0;color:var(--mut);font-size:13px}
-main{max-width:980px;margin:0 auto;padding:16px}a{color:#ffb35c}
+header{padding:22px 16px;background:linear-gradient(90deg,#0b4a5a,#04161c)}header h1{margin:0;font-size:22px}header p{margin:4px 0 0;color:var(--mut);font-size:13px}
+main{max-width:980px;margin:0 auto;padding:16px}a{color:#0b6b7d}
 .card{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:16px;margin:12px 0}
 .grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:12px}
 label{display:block;font-size:13px;color:var(--mut);margin-bottom:4px}
 input,select{width:100%;padding:9px 10px;border-radius:8px;border:1px solid var(--line);background:#071026;color:var(--ink);font:inherit}
-button{background:linear-gradient(90deg,#ff6b00,#ffa500);border:0;color:#081127;font-weight:700;padding:10px 18px;border-radius:10px;cursor:pointer;font:inherit;font-weight:700}
+button{background:linear-gradient(90deg,#ff6b00,#ffa500);border:0;color:#04161c;font-weight:700;padding:10px 18px;border-radius:10px;cursor:pointer;font:inherit;font-weight:700}
 .res{display:grid;grid-template-columns:repeat(auto-fit,minmax(170px,1fr));gap:10px}
-.res div{background:#071026;border:1px solid var(--line);border-radius:10px;padding:10px}.res b{display:block;font-size:20px;color:#ffd27a}
+.res div{background:#f4f6f8;border:1px solid var(--line);border-radius:10px;padding:10px}.res b{display:block;font-size:20px;color:#0b4a5a}
 table{width:100%;border-collapse:collapse;font-size:13px;font-variant-numeric:tabular-nums}th,td{padding:6px 8px;border-bottom:1px solid var(--line);text-align:right}th:first-child,td:first-child{text-align:left}
 .neg{color:#ff9a9a}.al{background:rgba(255,128,0,.12);border:1px solid var(--lar);border-radius:10px;padding:10px;margin:10px 0}
 .mut{color:var(--mut);font-size:13px}
@@ -62,4 +62,5 @@ $("go").onclick=()=>{
   ${r.memoria.map(m=>`<tr class="${m.negativo?"neg":""}"><td>${m.mes.split("-").reverse().join("/")}</td><td>${m.pct.toLocaleString("pt-BR",{minimumFractionDigits:2,maximumFractionDigits:4})}</td><td>${m.fator.replace(".",",")}</td></tr>`).join("")}</table>
   <p class="mut">Conferência: contador ____________________ · Perito ____________________</p></div>`;
 };
-</script></body></html>
+</script><script src="/fiscal/tema.js"></script>
+</body></html>

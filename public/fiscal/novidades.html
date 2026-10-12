@@ -2,14 +2,14 @@
 <html lang="pt-BR"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
 <title>Vyson Fiscal · Novidades de legislação</title>
 <style>
-:root{--bg:#081127;--card:#0f1d3d;--ink:#eef2ff;--mut:#9fb0d6;--line:#22345f;--lar:#ff8000}
+:root{--bg:#04161c;--card:#0b2e38;--ink:#eef2ff;--mut:#a9c4cf;--line:#1d4a55;--lar:#ff8000}
 *{box-sizing:border-box}body{margin:0;font:15px/1.55 Inter,system-ui,sans-serif;background:var(--bg);color:var(--ink)}
-header{padding:22px 16px;background:linear-gradient(90deg,#0b2a6b,#081127)}header h1{margin:0;font-size:22px}header p{margin:4px 0 0;color:var(--mut);font-size:13px}
-main{max-width:980px;margin:0 auto;padding:16px}a{color:#ffb35c}
+header{padding:22px 16px;background:linear-gradient(90deg,#0b4a5a,#04161c)}header h1{margin:0;font-size:22px}header p{margin:4px 0 0;color:var(--mut);font-size:13px}
+main{max-width:980px;margin:0 auto;padding:16px}a{color:#0b6b7d}
 details{background:var(--card);border:1px solid var(--line);border-radius:12px;margin:10px 0;padding:10px 14px}
 summary{cursor:pointer;font-weight:700;color:#ffd27a}summary span{color:var(--mut);font-weight:400;font-size:13px}
-.it{border-top:1px dashed var(--line);padding:9px 0}.it:first-of-type{border-top:0}.it b{color:#fff}.it small{color:var(--mut)}
-.novo{background:var(--lar);color:#081127;font-weight:700;font-size:11px;border-radius:99px;padding:1px 8px;margin-left:6px}
+.it{border-top:1px dashed var(--line);padding:9px 0}.it:first-of-type{border-top:0}.it b{color:var(--ink)}.it small{color:var(--mut)}
+.novo{background:var(--lar);color:#04161c;font-weight:700;font-size:11px;border-radius:99px;padding:1px 8px;margin-left:6px}
 .topo{color:var(--mut);font-size:13px;margin:6px 0 14px}
 </style></head><body>
 <header><h1>Novidades de legislação tributária</h1><p>Atualizado automaticamente pelo agente da Vyson a partir de fontes oficiais (Senado, Câmara e diários oficiais). <a href="./">← Vyson Fiscal</a></p></header>
@@ -21,4 +21,5 @@ fetch("novidades.json",{cache:"no-store"}).then(r=>r.json()).then(j=>{
   document.getElementById("lista").innerHTML=Object.entries(j.gavetas).map(([g,itens],k)=>`<details ${k<3?"open":""}><summary>${esc(g)} <span>(${itens.length})</span></summary>${
     itens.map(i=>`<div class="it"><b>${esc(i.titulo)}</b>${i.novo?'<span class="novo">NOVO</span>':""}<br><small>${esc(i.fonte)}${i.data?" · "+esc(i.data):""}</small><br>${esc(i.ementa)} ${i.link?`<a href="${esc(i.link)}" target="_blank" rel="noopener">ver norma</a>`:""}</div>`).join("")}</details>`).join("");
 }).catch(()=>{document.getElementById("topo").textContent="Ainda sem dados: o agente roda a cada 6 horas."});
-</script></body></html>
+</script><script src="/fiscal/tema.js"></script>
+</body></html>
