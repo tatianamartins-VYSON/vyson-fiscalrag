@@ -1,0 +1,21 @@
+name: avaliacao-amd
+# Roda as 30 perguntas congeladas contra o site no ar (modelo aberto na AMD) e salva o relatório no repositório.
+on:
+  workflow_dispatch:
+  push:
+    paths: [".github/workflows/avaliacao-amd.yml"]
+permissions:
+  contents: write
+jobs:
+  avaliar:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - run: python avaliacao/eval.py --base https://tatianabot-dashboard.vercel.app | tee avaliacao/relatorios/ultimo_amd.txt
+      - name: Salvar o relatório
+        run: |
+          git config user.name "github-actions"; git config user.email "github-actions@users.noreply.github.com"
+          git add avaliacao/relatorios && git commit -qm "Avaliação no AMD: relatório das 30 perguntas congeladas" && git push -q || echo "nada novo"
