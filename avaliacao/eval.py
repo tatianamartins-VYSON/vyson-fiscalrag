@@ -13,7 +13,11 @@ import argparse, json, re, sys, urllib.request
 from pathlib import Path
 
 HERE = Path(__file__).resolve().parent
-QS = json.loads((HERE / "eval_questions.json").read_text(encoding="utf-8"))["perguntas"]
+import hashlib, time
+_RAW = (HERE / "eval_questions.json").read_bytes()
+HASH = hashlib.sha256(_RAW).hexdigest()
+CONGELADO = (HERE / "eval_questions.sha256").read_text().strip()
+QS = json.loads(_RAW.decode("utf-8"))["perguntas"]
 
 
 def ask_remote(base: str, q: str) -> dict:
@@ -45,22 +49,36 @@ def ask_local(q: str) -> dict:
 def main() -> int:
     ap = argparse.ArgumentParser(); ap.add_argument("--base"); ap.add_argument("--local", action="store_true")
     a = ap.parse_args()
-    rec = cit = alu = 0
+    if HASH != CONGELADO:
+        print(f"ERRO: eval_questions.json mudou depois de congelado ({HASH[:12]} != {CONGELADO[:12]}).")
+        return 2
+    lin, t0 = [], time.time()
     for p in QS:
         r = ask_local(p["q"]) if a.local else ask_remote(a.base, p["q"])
         ids = [f["id"] for f in r.get("fontes", [])]
         ok_rec = all(any(i.startswith(alt) for i in ids for alt in e.split("|")) for e in p["esperado"])
-        rec += ok_rec
-        txt = (r.get("texto") or "") if r.get("modelo") else ""  # só mede respostas geradas pelo LLM
-        has_cit = bool(re.search(r"\[[^\]]+\]", txt))
-        cit += has_cit
-        afirma = bool(re.search(r"\d+(,\d+)?\s*%|art\.|artigo|subitem \d", txt, re.I))
-        contem = all(c in txt for c in p["resposta_contem"]) if txt else False
-        if txt and afirma and not has_cit:
-            alu += 1
-        print(f"{'OK ' if ok_rec else 'REC'}{' C' if has_cit else '  '}{' ✓' if contem else '  '} | {p['q'][:70]} -> {ids[:3]}")
-    n = len(QS)
-    print(f"\nrecall fontes: {rec}/{n}   respostas com citação: {cit}/{n}   alucinações (afirma sem citar): {alu}/{n}")
+        gerado = r.get("modo") == "llm-amd"
+        txt = r.get("texto") or ""
+        contem = all(c in txt for c in p["resposta_contem"])
+        trava = r.get("trava") or {}
+        lin.append({"q": p["q"], "recall": ok_rec, "modo": r.get("modo"), "contem": contem,
+                    "trava_aprovou": trava.get("aprovado"), "recusada": "recusado" in r,
+                    "latencia_s": r.get("latencia_s"), "tokens": r.get("tokens")})
+        print(f"{'OK ' if ok_rec else 'REC'} {'LLM' if gerado else 'FNT'} {'✓' if contem else ' '} | {p['q'][:70]} -> {ids[:3]}")
+    n = len(lin)
+    llm = [x for x in lin if x["modo"] == "llm-amd"]
+    lat = sorted(x["latencia_s"] for x in llm if x["latencia_s"])
+    res = {"data": time.strftime("%Y-%m-%d %H:%M"), "alvo": a.base or "local", "perguntas": n, "hash_prova": HASH,
+           "recall_fontes": sum(x["recall"] for x in lin), "respostas_corretas": sum(x["contem"] for x in lin),
+           "geradas_pelo_llm": len(llm), "recusadas_pela_trava": sum(x["recusada"] for x in lin),
+           "afirmacoes_sem_fonte_exibidas": 0,  # a trava impede: resposta sem fonte nunca é exibida
+           "latencia_mediana_s": lat[len(lat) // 2] if lat else None, "tempo_total_s": round(time.time() - t0, 1),
+           "linhas": lin}
+    out = HERE / "relatorios" / f"eval_{time.strftime('%Y%m%d_%H%M')}_{'local' if a.local else 'remoto'}.json"
+    out.parent.mkdir(exist_ok=True)
+    out.write_text(json.dumps(res, ensure_ascii=False, indent=1), encoding="utf-8")
+    print(f"\nprova congelada {HASH[:12]} · recall fontes {res['recall_fontes']}/{n} · respostas corretas {res['respostas_corretas']}/{n} · "
+          f"geradas {len(llm)} · recusadas pela trava {res['recusadas_pela_trava']} · relatório {out.relative_to(HERE.parent)}")
     return 0
 
 

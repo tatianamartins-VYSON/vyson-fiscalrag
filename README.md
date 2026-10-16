@@ -51,6 +51,14 @@ Without `RAG_BASE_URL` it still answers by quoting the official passages. Secret
 | Retrieval only (local) | 27/30 | n/a | n/a |
 | With Qwen on AMD GPU | first production answer correct and cited | to be measured on all 30 | target 0 |
 
+## Evidence gate and frozen evaluation
+
+- **Citation gate (deterministic, `trava_citacao`).** Every sentence that states a rate, article, code or law must cite, in brackets, the exact title of an official passage retrieved for that question. A sentence without a source, or a citation to a title that was not retrieved, rejects the whole model answer: the user then sees only the official passages. The gate checks citation coverage and validity; it does not claim every cited inference is correct.
+- **Mode always disclosed.** Each answer carries `modo` (`llm-amd` = generated on the AMD GPU and approved by the gate; `fontes` = official passages only). `GET /api/health` (or `/api/fiscal_ask?health=1`) shows the active mode, model and GPU.
+- **Frozen test set.** `avaliacao/eval_questions.json` (30 real accountant questions, reviewed by a CRC-registered accountant) is frozen by SHA-256 in `eval_questions.sha256`; `eval.py` refuses to run if it changed. Every run saves a JSON report in `avaliacao/relatorios/`.
+- **Baseline first.** The rules-only mode (retrieval + official passages, no model) is measured before the GPU run: **27/30** source recall, frozen set `00514c2a3bef`. The GPU run is then measured on the same frozen set.
+- **Tests.** `python -m unittest discover -s tests` (10 tests: gate approves cited claims, rejects uncited and invented citations, mode disclosure, frozen hash, minimum recall); CI runs them on Python 3.10–3.12.
+
 ## Official data
 
 - `calculos/atualizar_indices.py`: IPCA, IPCA-E, INPC, IPCA-15, IGP-M, SELIC and TR from the Central Bank SGS API, each saved with source, download date and SHA-256 (`calculos/indices/*.meta.json`). IPCA and INPC are cross-checked against IBGE.

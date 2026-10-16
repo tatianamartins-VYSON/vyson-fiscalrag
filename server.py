@@ -17,7 +17,7 @@ class App(Api):
 
     def do_GET(self):
         path = urlparse(self.path).path
-        if path.startswith("/api/fiscal_ask"):
+        if path.startswith(("/api/fiscal_ask", "/api/health")):
             return super().do_GET()
         if path in ("/", ""):
             path = "/fiscal/perguntar"

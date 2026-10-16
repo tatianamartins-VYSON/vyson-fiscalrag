@@ -232,6 +232,38 @@ def resposta_extrativa(hits: list[tuple[float, dict]]) -> str:
     return "\n".join(linhas)
 
 
+_CITA = re.compile(r"\[([^\]]+)\]")
+_AFIRMA = re.compile(r"\d+(?:[,.]\d+)?\s*%|\bart(?:igo)?\.?\s*\d|\bsubitem\b|\bc[óo]digo\s*\d|\bLC\s*\d|\bLei\s*n?º?\s*\d|\bal[íi]quota\b", re.I)
+
+
+def trava_citacao(texto: str, titulos: list[str]) -> dict:
+    """Trava determinística: toda frase que afirma alíquota, artigo, código ou lei precisa citar,
+    entre colchetes, o título exato de um trecho recuperado. Título desconhecido também reprova.
+    Confere cobertura e validade das citações; não garante que a conclusão esteja certa."""
+    conhecidos = set(titulos)
+    unidades, sem_fonte, desconhecidas = 0, [], []
+    for linha in (texto or "").splitlines():
+        ln = linha.strip().lstrip("-*• ").strip()
+        if not ln or ln.lower().startswith("fontes") or ln.startswith("#"):
+            continue
+        for frase in re.split(r"(?<=[.!?])\s+(?=[A-ZÁÉÍÓÚÂÊÔÃÕÇ])", ln):
+            cit = _CITA.findall(frase)
+            desconhecidas += [c for c in cit if c not in conhecidos]
+            if _AFIRMA.search(_CITA.sub("", frase)):
+                unidades += 1
+                if not any(c in conhecidos for c in cit):
+                    sem_fonte.append(frase[:160])
+    return {"aprovado": not sem_fonte and not desconhecidas, "afirmacoes": unidades,
+            "sem_fonte": sem_fonte, "citacoes_desconhecidas": sorted(set(desconhecidas))}
+
+
+def saude() -> dict:
+    on = bool(os.getenv("RAG_BASE_URL") and os.getenv("RAG_MODEL"))
+    return {"ok": True, "modo": "llm-amd" if on else "fontes", "modelo": os.getenv("RAG_MODEL", "") if on else "",
+            "gpu": os.getenv("RAG_GPU", "") if on else "",
+            "trava": "toda afirmação cita um trecho oficial recuperado; senão a resposta gerada é recusada"}
+
+
 def ask(question: str, base: str, k: int = 6) -> dict:
     q = (question or "").strip()[:500]
     if len(q) < 4:
@@ -254,7 +286,15 @@ def ask(question: str, base: str, k: int = 6) -> dict:
         detalhe = f" {e.code}" if hasattr(e, "code") else ""
         out["aviso"] = f"LLM indisponível ({type(e).__name__}{detalhe}); exibindo só as fontes."
     if llm:
+        trava = trava_citacao(llm["texto"], [d["titulo"] for _, d in hits])
+        out["trava"] = trava
+        if not trava["aprovado"]:
+            out["aviso"] = "Resposta do modelo recusada pela trava de citação; exibindo só as fontes oficiais."
+            out["recusado"] = {"texto": llm["texto"], "modelo": llm["modelo"]}
+            llm = None
+    if llm:
         out.update(llm)
+        out["modo"] = "llm-amd"
         # citações efetivas: só as fontes cujo título aparece na resposta
         usadas = [f for f in out["fontes"] if f["titulo"] in llm["texto"]]
         out["citadas"] = usadas or out["fontes"][:2]
@@ -286,6 +326,9 @@ class handler(BaseHTTPRequestHandler):
             self._send(500, {"erro": f"{type(e).__name__}: {e}"[:300]})
 
     def do_GET(self):
+        qs = parse_qs(urlparse(self.path).query)
+        if "health" in qs or urlparse(self.path).path.endswith("/health"):
+            return self._send(200, saude())
         self._ask(parse_qs(urlparse(self.path).query).get("q", [""])[0])
 
     def do_POST(self):
