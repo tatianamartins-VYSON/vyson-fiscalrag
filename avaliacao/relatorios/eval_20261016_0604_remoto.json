@@ -1,0 +1,315 @@
+{
+ "data": "2026-10-16 06:04",
+ "alvo": "https://tatianabot-dashboard.vercel.app",
+ "perguntas": 30,
+ "hash_prova": "00514c2a3bef69ae656239b459f9287497847f5b05e36979053a9544606387be",
+ "recall_fontes": 27,
+ "respostas_corretas": 29,
+ "geradas_pelo_llm": 7,
+ "recusadas_pela_trava": 23,
+ "afirmacoes_sem_fonte_exibidas": 0,
+ "latencia_mediana_s": 4.8,
+ "tempo_total_s": 177.6,
+ "linhas": [
+  {
+   "q": "Qual a alíquota de ISS em Maceió para programação de software?",
+   "recall": true,
+   "modo": "fontes",
+   "contem": true,
+   "trava_aprovou": false,
+   "recusada": true,
+   "latencia_s": null,
+   "tokens": null
+  },
+  {
+   "q": "Qual a alíquota de ISS em Maceió para análise e desenvolvimento de sistemas?",
+   "recall": false,
+   "modo": "llm-amd",
+   "contem": true,
+   "trava_aprovou": true,
+   "recusada": false,
+   "latencia_s": 3.28,
+   "tokens": 97
+  },
+  {
+   "q": "Em qual subitem da LC 116 se enquadra consultoria em tecnologia da informação?",
+   "recall": true,
+   "modo": "fontes",
+   "contem": true,
+   "trava_aprovou": false,
+   "recusada": true,
+   "latencia_s": null,
+   "tokens": null
+  },
+  {
+   "q": "Em qual subitem da LC 116 se enquadra licenciamento de programas de computador?",
+   "recall": true,
+   "modo": "fontes",
+   "contem": true,
+   "trava_aprovou": false,
+   "recusada": true,
+   "latencia_s": null,
+   "tokens": null
+  },
+  {
+   "q": "Serviço exportado para o exterior paga ISS?",
+   "recall": true,
+   "modo": "fontes",
+   "contem": true,
+   "trava_aprovou": false,
+   "recusada": true,
+   "latencia_s": null,
+   "tokens": null
+  },
+  {
+   "q": "Qual item da LC 116 cobre serviços de medicina e consulta médica?",
+   "recall": true,
+   "modo": "fontes",
+   "contem": true,
+   "trava_aprovou": false,
+   "recusada": true,
+   "latencia_s": null,
+   "tokens": null
+  },
+  {
+   "q": "Fisioterapia está em qual subitem da LC 116?",
+   "recall": false,
+   "modo": "fontes",
+   "contem": true,
+   "trava_aprovou": false,
+   "recusada": true,
+   "latencia_s": null,
+   "tokens": null
+  },
+  {
+   "q": "Em qual subitem da LC 116 entra execução de obra de construção civil por empreitada?",
+   "recall": true,
+   "modo": "fontes",
+   "contem": true,
+   "trava_aprovou": false,
+   "recusada": true,
+   "latencia_s": null,
+   "tokens": null
+  },
+  {
+   "q": "Qual o código de ISS em São Paulo para empreitada de obra hidráulica?",
+   "recall": true,
+   "modo": "llm-amd",
+   "contem": true,
+   "trava_aprovou": true,
+   "recusada": false,
+   "latencia_s": 6.88,
+   "tokens": 117
+  },
+  {
+   "q": "Qual a alíquota de ISS em São Paulo para construção civil por empreitada?",
+   "recall": true,
+   "modo": "fontes",
+   "contem": false,
+   "trava_aprovou": false,
+   "recusada": true,
+   "latencia_s": null,
+   "tokens": null
+  },
+  {
+   "q": "Serviços de engenharia e agronomia estão em qual item da LC 116?",
+   "recall": true,
+   "modo": "fontes",
+   "contem": true,
+   "trava_aprovou": false,
+   "recusada": true,
+   "latencia_s": null,
+   "tokens": null
+  },
+  {
+   "q": "Qual subitem da LC 116 cobre contabilidade e auditoria?",
+   "recall": true,
+   "modo": "fontes",
+   "contem": true,
+   "trava_aprovou": false,
+   "recusada": true,
+   "latencia_s": null,
+   "tokens": null
+  },
+  {
+   "q": "Assessoria e consultoria empresarial: qual subitem da LC 116?",
+   "recall": true,
+   "modo": "fontes",
+   "contem": true,
+   "trava_aprovou": false,
+   "recusada": true,
+   "latencia_s": null,
+   "tokens": null
+  },
+  {
+   "q": "Qual a alíquota de ISS em Maceió para serviços de contabilidade?",
+   "recall": true,
+   "modo": "fontes",
+   "contem": true,
+   "trava_aprovou": false,
+   "recusada": true,
+   "latencia_s": null,
+   "tokens": null
+  },
+  {
+   "q": "Advocacia está em qual subitem da LC 116?",
+   "recall": true,
+   "modo": "fontes",
+   "contem": true,
+   "trava_aprovou": false,
+   "recusada": true,
+   "latencia_s": null,
+   "tokens": null
+  },
+  {
+   "q": "Ensino regular e cursos: qual item da LC 116?",
+   "recall": true,
+   "modo": "fontes",
+   "contem": true,
+   "trava_aprovou": false,
+   "recusada": true,
+   "latencia_s": null,
+   "tokens": null
+  },
+  {
+   "q": "Hospedagem em hotel está na lista da LC 116? Qual subitem?",
+   "recall": true,
+   "modo": "fontes",
+   "contem": true,
+   "trava_aprovou": false,
+   "recusada": true,
+   "latencia_s": null,
+   "tokens": null
+  },
+  {
+   "q": "Transporte municipal de passageiros: qual subitem da LC 116?",
+   "recall": true,
+   "modo": "fontes",
+   "contem": true,
+   "trava_aprovou": false,
+   "recusada": true,
+   "latencia_s": null,
+   "tokens": null
+  },
+  {
+   "q": "Qual subitem da LC 116 cobre propaganda e publicidade?",
+   "recall": true,
+   "modo": "fontes",
+   "contem": true,
+   "trava_aprovou": false,
+   "recusada": true,
+   "latencia_s": null,
+   "tokens": null
+  },
+  {
+   "q": "Limpeza e conservação de imóveis: qual subitem da LC 116?",
+   "recall": true,
+   "modo": "fontes",
+   "contem": true,
+   "trava_aprovou": false,
+   "recusada": true,
+   "latencia_s": null,
+   "tokens": null
+  },
+  {
+   "q": "Vigilância e segurança: qual subitem da LC 116?",
+   "recall": true,
+   "modo": "fontes",
+   "contem": true,
+   "trava_aprovou": false,
+   "recusada": true,
+   "latencia_s": null,
+   "tokens": null
+  },
+  {
+   "q": "Qual a lei que institui o Simples Nacional?",
+   "recall": true,
+   "modo": "llm-amd",
+   "contem": true,
+   "trava_aprovou": true,
+   "recusada": false,
+   "latencia_s": 5.37,
+   "tokens": 92
+  },
+  {
+   "q": "Qual lei complementar instituiu o IBS e a CBS na reforma tributária?",
+   "recall": true,
+   "modo": "llm-amd",
+   "contem": true,
+   "trava_aprovou": true,
+   "recusada": false,
+   "latencia_s": 4.8,
+   "tokens": 95
+  },
+  {
+   "q": "Qual emenda constitucional aprovou a reforma tributária do consumo?",
+   "recall": true,
+   "modo": "llm-amd",
+   "contem": true,
+   "trava_aprovou": true,
+   "recusada": false,
+   "latencia_s": 4.39,
+   "tokens": 116
+  },
+  {
+   "q": "Qual a alíquota mínima de ISS permitida pela Constituição e pela LC 116?",
+   "recall": true,
+   "modo": "fontes",
+   "contem": true,
+   "trava_aprovou": false,
+   "recusada": true,
+   "latencia_s": null,
+   "tokens": null
+  },
+  {
+   "q": "Onde o ISS é devido no caso de construção civil?",
+   "recall": true,
+   "modo": "llm-amd",
+   "contem": true,
+   "trava_aprovou": true,
+   "recusada": false,
+   "latencia_s": 4.94,
+   "tokens": 72
+  },
+  {
+   "q": "Serviços de informática importados do exterior pagam ISS?",
+   "recall": false,
+   "modo": "llm-amd",
+   "contem": true,
+   "trava_aprovou": true,
+   "recusada": false,
+   "latencia_s": 2.23,
+   "tokens": 14
+  },
+  {
+   "q": "Qual a alíquota de ISS em Maceió para serviços de engenharia?",
+   "recall": true,
+   "modo": "fontes",
+   "contem": true,
+   "trava_aprovou": false,
+   "recusada": true,
+   "latencia_s": null,
+   "tokens": null
+  },
+  {
+   "q": "Clínica de estética: qual subitem da LC 116 e alíquota em Maceió?",
+   "recall": true,
+   "modo": "fontes",
+   "contem": true,
+   "trava_aprovou": false,
+   "recusada": true,
+   "latencia_s": null,
+   "tokens": null
+  },
+  {
+   "q": "Qual o prazo e a base legal da retenção de ISS pelo tomador?",
+   "recall": true,
+   "modo": "fontes",
+   "contem": true,
+   "trava_aprovou": false,
+   "recusada": true,
+   "latencia_s": null,
+   "tokens": null
+  }
+ ]
+}
