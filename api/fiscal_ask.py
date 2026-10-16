@@ -251,7 +251,7 @@ def trava_citacao(texto: str, titulos: list[str]) -> dict:
             desconhecidas += [c for c in cit if c not in conhecidos]
             if _AFIRMA.search(_CITA.sub("", frase)):
                 unidades += 1
-                if not any(c in conhecidos for c in cit):
+                if not any(c in conhecidos for c in cit + _CITA.findall(ln)):  # a citação pode vir no fim da mesma linha
                     sem_fonte.append(frase[:160])
     return {"aprovado": not sem_fonte and not desconhecidas, "afirmacoes": unidades,
             "sem_fonte": sem_fonte, "citacoes_desconhecidas": sorted(set(desconhecidas))}
