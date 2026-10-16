@@ -63,7 +63,7 @@ def main() -> int:
         trava = r.get("trava") or {}
         lin.append({"q": p["q"], "recall": ok_rec, "modo": r.get("modo"), "contem": contem,
                     "trava_aprovou": trava.get("aprovado"), "recusada": "recusado" in r,
-                    "trava": trava, "texto_recusado": (r.get("recusado") or {}).get("texto", "")[:900],
+                    "trava": trava, "texto_recusado": (r.get("recusado") or {}).get("texto", "")[:900], "aviso": r.get("aviso"),
                     "latencia_s": r.get("latencia_s"), "tokens": r.get("tokens")})
         print(f"{'OK ' if ok_rec else 'REC'} {'LLM' if gerado else 'FNT'} {'✓' if contem else ' '} | {p['q'][:70]} -> {ids[:3]}")
     n = len(lin)

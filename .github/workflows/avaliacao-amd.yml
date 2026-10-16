@@ -1,5 +1,5 @@
 name: avaliacao-amd
-# rodada 2: guarda o veredito da trava e o texto recusado
+# rodada 3: guarda também o aviso do site
 # Roda as 30 perguntas congeladas contra o site no ar (modelo aberto na AMD) e salva o relatório no repositório.
 on:
   workflow_dispatch:
