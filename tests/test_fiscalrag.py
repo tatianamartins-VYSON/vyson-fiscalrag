@@ -25,7 +25,7 @@ class Trava(unittest.TestCase):
         self.assertEqual(r["afirmacoes"], 1)
 
     def test_recusa_afirmacao_sem_fonte(self):
-        r = fa.trava_citacao("A alíquota é 5%. Programação está no subitem 1.02 [LC 116/2003 subitem 1.02].", T)
+        r = fa.trava_citacao("A alíquota é 5%.\nProgramação está no subitem 1.02 [LC 116/2003 subitem 1.02].", T)
         self.assertFalse(r["aprovado"])
         self.assertEqual(len(r["sem_fonte"]), 1)
 
