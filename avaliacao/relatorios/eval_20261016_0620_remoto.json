@@ -1,0 +1,608 @@
+{
+ "data": "2026-10-16 06:20",
+ "alvo": "https://tatianabot-dashboard.vercel.app",
+ "perguntas": 30,
+ "hash_prova": "00514c2a3bef69ae656239b459f9287497847f5b05e36979053a9544606387be",
+ "recall_fontes": 27,
+ "respostas_corretas": 29,
+ "geradas_pelo_llm": 6,
+ "recusadas_pela_trava": 24,
+ "afirmacoes_sem_fonte_exibidas": 0,
+ "latencia_mediana_s": 3.97,
+ "tempo_total_s": 155.2,
+ "linhas": [
+  {
+   "q": "Qual a alíquota de ISS em Maceió para programação de software?",
+   "recall": true,
+   "modo": "fontes",
+   "contem": true,
+   "trava_aprovou": false,
+   "recusada": true,
+   "trava": {
+    "aprovado": false,
+    "afirmacoes": 2,
+    "sem_fonte": [
+     "2.0%, item 1.02 da LC 116."
+    ],
+    "citacoes_desconhecidas": []
+   },
+   "texto_recusado": "2.0%, item 1.02 da LC 116.\n\nA atividade de programação em Maceió possui alíquota de 2.0% sob o código 0102010 [ISS Maceió código 0102010 (LC 116 item 1.02)].\n\nFontes:\n[ISS Maceió código 0102010 (LC 116 item 1.02)]",
+   "aviso": "Resposta da IA recusada pela trava de citação (afirmação sem fonte oficial); exibindo só as fontes.",
+   "latencia_s": null,
+   "tokens": null
+  },
+  {
+   "q": "Qual a alíquota de ISS em Maceió para análise e desenvolvimento de sistemas?",
+   "recall": false,
+   "modo": "llm-amd",
+   "contem": true,
+   "trava_aprovou": true,
+   "recusada": false,
+   "trava": {
+    "aprovado": true,
+    "afirmacoes": 1,
+    "sem_fonte": [],
+    "citacoes_desconhecidas": []
+   },
+   "texto_recusado": "",
+   "aviso": null,
+   "latencia_s": 9.52,
+   "tokens": 97
+  },
+  {
+   "q": "Em qual subitem da LC 116 se enquadra consultoria em tecnologia da informação?",
+   "recall": true,
+   "modo": "fontes",
+   "contem": true,
+   "trava_aprovou": false,
+   "recusada": true,
+   "trava": {
+    "aprovado": false,
+    "afirmacoes": 2,
+    "sem_fonte": [
+     "Subitem 1.06."
+    ],
+    "citacoes_desconhecidas": []
+   },
+   "texto_recusado": "Subitem 1.06.\n\nA consultoria em tecnologia da informação enquadra-se no subitem 1.06, que trata de assessoria e consultoria em informática [LC 116/2003 subitem 1.06]. Esta classificação é corroborada pelo código de serviço de Maceió para consultoria em tecnologia da informação [ISS Maceió código 6204000 (LC 116 item 1.06)].\n\nFontes:\n[LC 116/2003 subitem 1.06]\n[ISS Maceió código 6204000 (LC 116 item 1.06)]",
+   "aviso": "Resposta da IA recusada pela trava de citação (afirmação sem fonte oficial); exibindo só as fontes.",
+   "latencia_s": null,
+   "tokens": null
+  },
+  {
+   "q": "Em qual subitem da LC 116 se enquadra licenciamento de programas de computador?",
+   "recall": true,
+   "modo": "fontes",
+   "contem": true,
+   "trava_aprovou": false,
+   "recusada": true,
+   "trava": {
+    "aprovado": false,
+    "afirmacoes": 2,
+    "sem_fonte": [
+     "Subitem 1.05."
+    ],
+    "citacoes_desconhecidas": []
+   },
+   "texto_recusado": "Subitem 1.05.\n\nO licenciamento ou cessão de direito de uso de programas de computação está expressamente previsto neste subitem [LC 116/2003 subitem 1.05].\n\nFontes:\n[LC 116/2003 subitem 1.05]",
+   "aviso": "Resposta da IA recusada pela trava de citação (afirmação sem fonte oficial); exibindo só as fontes.",
+   "latencia_s": null,
+   "tokens": null
+  },
+  {
+   "q": "Serviço exportado para o exterior paga ISS?",
+   "recall": true,
+   "modo": "fontes",
+   "contem": true,
+   "trava_aprovou": false,
+   "recusada": true,
+   "trava": {
+    "aprovado": false,
+    "afirmacoes": 0,
+    "sem_fonte": [],
+    "citacoes_desconhecidas": [
+     "Constituição Constituição Federal (1988) art. 156, §3º, II",
+     "LC 116/2003 (2003)",
+     "LC 116/2003 (2003) art. 2º, I"
+    ]
+   },
+   "texto_recusado": "Não, a exportação é não tributada. De acordo com a legislação, o ISS não incide sobre a exportação de serviços [LC 116/2003 (2003) art. 2º, I], conforme a previsão de não incidência estabelecida por lei complementar [Constituição Constituição Federal (1988) art. 156, §3º, II].\n\nFontes:\n[LC 116/2003 (2003)]\n[Constituição Constituição Federal (1988)]",
+   "aviso": "Resposta da IA recusada pela trava de citação (afirmação sem fonte oficial); exibindo só as fontes.",
+   "latencia_s": null,
+   "tokens": null
+  },
+  {
+   "q": "Qual item da LC 116 cobre serviços de medicina e consulta médica?",
+   "recall": true,
+   "modo": "fontes",
+   "contem": true,
+   "trava_aprovou": false,
+   "recusada": true,
+   "trava": {
+    "aprovado": false,
+    "afirmacoes": 2,
+    "sem_fonte": [
+     "Subitem 4.01."
+    ],
+    "citacoes_desconhecidas": []
+   },
+   "texto_recusado": "Subitem 4.01.\n\nO serviço de medicina é classificado especificamente no subitem 4.01, que está inserido no item 04 (Serviços de saúde, assistência médica e congêneres) da lei complementar [LC 116/2003 subitem 4.01] [LC 116/2003 item 04].\n\nFontes:\n[LC 116/2003 subitem 4.01]\n[LC 116/2003 item 04]",
+   "aviso": "Resposta da IA recusada pela trava de citação (afirmação sem fonte oficial); exibindo só as fontes.",
+   "latencia_s": null,
+   "tokens": null
+  },
+  {
+   "q": "Fisioterapia está em qual subitem da LC 116?",
+   "recall": false,
+   "modo": "fontes",
+   "contem": true,
+   "trava_aprovou": false,
+   "recusada": true,
+   "trava": {
+    "aprovado": false,
+    "afirmacoes": 1,
+    "sem_fonte": [
+     "Subitem 4.08."
+    ],
+    "citacoes_desconhecidas": []
+   },
+   "texto_recusado": "Subitem 4.08.\n\nA atividade de fisioterapia está vinculada ao item 4.08 da Lei Complementar 116, conforme indicado nos códigos de tributação de Maceió e São Paulo [ISS Maceió código 8650004 (LC 116 item 4.08)] [ISS São Paulo código 04391 (LC 116 item 4.08)].\n\nFontes:\n[ISS Maceió código 8650004 (LC 116 item 4.08)]\n[ISS São Paulo código 04391 (LC 116 item 4.08)]",
+   "aviso": "Resposta da IA recusada pela trava de citação (afirmação sem fonte oficial); exibindo só as fontes.",
+   "latencia_s": null,
+   "tokens": null
+  },
+  {
+   "q": "Em qual subitem da LC 116 entra execução de obra de construção civil por empreitada?",
+   "recall": true,
+   "modo": "fontes",
+   "contem": true,
+   "trava_aprovou": false,
+   "recusada": true,
+   "trava": {
+    "aprovado": false,
+    "afirmacoes": 1,
+    "sem_fonte": [
+     "Subitem 7.02."
+    ],
+    "citacoes_desconhecidas": []
+   },
+   "texto_recusado": "Subitem 7.02.\n\nA execução de obras de construção civil, hidráulica ou elétrica, realizada por administração, enquadra-se neste item [LC 116/2003 subitem 7.02].\n\nFontes:\n[LC 116/2003 subitem 7.02]",
+   "aviso": "Resposta da IA recusada pela trava de citação (afirmação sem fonte oficial); exibindo só as fontes.",
+   "latencia_s": null,
+   "tokens": null
+  },
+  {
+   "q": "Qual o código de ISS em São Paulo para empreitada de obra hidráulica?",
+   "recall": true,
+   "modo": "llm-amd",
+   "contem": true,
+   "trava_aprovou": true,
+   "recusada": false,
+   "trava": {
+    "aprovado": true,
+    "afirmacoes": 1,
+    "sem_fonte": [],
+    "citacoes_desconhecidas": []
+   },
+   "texto_recusado": "",
+   "aviso": null,
+   "latencia_s": 5.77,
+   "tokens": 117
+  },
+  {
+   "q": "Qual a alíquota de ISS em São Paulo para construção civil por empreitada?",
+   "recall": true,
+   "modo": "fontes",
+   "contem": false,
+   "trava_aprovou": false,
+   "recusada": true,
+   "trava": {
+    "aprovado": false,
+    "afirmacoes": 2,
+    "sem_fonte": [
+     "5.0% (Código 01023, Item 7.02 da LC 116)."
+    ],
+    "citacoes_desconhecidas": []
+   },
+   "texto_recusado": "5.0% (Código 01023, Item 7.02 da LC 116).\n\nA alíquota aplica-se à execução de obras de construção civil, elétrica e semelhantes, por administração, empreitada ou subempreitada, incluindo serviços auxiliares como terraplanagem e pavimentação [ISS São Paulo código 01023 (LC 116 item 7.02)].\n\nFontes: [ISS São Paulo código 01023 (LC 116 item 7.02)]",
+   "aviso": "Resposta da IA recusada pela trava de citação (afirmação sem fonte oficial); exibindo só as fontes.",
+   "latencia_s": null,
+   "tokens": null
+  },
+  {
+   "q": "Serviços de engenharia e agronomia estão em qual item da LC 116?",
+   "recall": true,
+   "modo": "fontes",
+   "contem": true,
+   "trava_aprovou": false,
+   "recusada": true,
+   "trava": {
+    "aprovado": false,
+    "afirmacoes": 1,
+    "sem_fonte": [
+     "Os serviços de engenharia e congêneres estão classificados no subitem 7.01 da LC 116/2003, que faz parte do grupo de serviços relativos a engenharia, arquitetur"
+    ],
+    "citacoes_desconhecidas": []
+   },
+   "texto_recusado": "Item 7.01.\n\nOs serviços de engenharia e congêneres estão classificados no subitem 7.01 da LC 116/2003, que faz parte do grupo de serviços relativos a engenharia, arquitetura, geologia, urbanismo, construção civil, manutenção, limpeza, meio ambiente, saneamento e congêneres.\n\nFontes: [LC 116/2003 subitem 7.01], [LC 116/2003 item 07]",
+   "aviso": "Resposta da IA recusada pela trava de citação (afirmação sem fonte oficial); exibindo só as fontes.",
+   "latencia_s": null,
+   "tokens": null
+  },
+  {
+   "q": "Qual subitem da LC 116 cobre contabilidade e auditoria?",
+   "recall": true,
+   "modo": "fontes",
+   "contem": true,
+   "trava_aprovou": false,
+   "recusada": true,
+   "trava": {
+    "aprovado": false,
+    "afirmacoes": 2,
+    "sem_fonte": [
+     "Contabilidade: subitem 17.19; Auditoria: subitem 17.16."
+    ],
+    "citacoes_desconhecidas": []
+   },
+   "texto_recusado": "Contabilidade: subitem 17.19; Auditoria: subitem 17.16.\n\nOs serviços de contabilidade, incluindo técnicos e auxiliares, estão previstos no subitem 17.19 [LC 116/2003 subitem 17.19], enquanto a auditoria é coberta pelo subitem 17.16 [LC 116/2003 subitem 17.16].\n\nFontes:\n[LC 116/2003 subitem 17.19]\n[LC 116/2003 subitem 17.16]",
+   "aviso": "Resposta da IA recusada pela trava de citação (afirmação sem fonte oficial); exibindo só as fontes.",
+   "latencia_s": null,
+   "tokens": null
+  },
+  {
+   "q": "Assessoria e consultoria empresarial: qual subitem da LC 116?",
+   "recall": true,
+   "modo": "fontes",
+   "contem": true,
+   "trava_aprovou": false,
+   "recusada": true,
+   "trava": {
+    "aprovado": false,
+    "afirmacoes": 1,
+    "sem_fonte": [
+     "Subitem 17.03 (conforme código de Maceió) ou Subitem 17.01."
+    ],
+    "citacoes_desconhecidas": []
+   },
+   "texto_recusado": "Subitem 17.03 (conforme código de Maceió) ou Subitem 17.01.\n\nO serviço de consultoria em gestão empresarial é vinculado ao item 17.03 [ISS Maceió código 7020400 (LC 116 item 17.03)]. Caso a assessoria empresarial não se enquadre em itens específicos, utiliza-se a regra geral de assessoria ou consultoria de qualquer natureza [LC 116/2003 subitem 17.01].\n\nFontes:\n[ISS Maceió código 7020400 (LC 116 item 17.03)]\n[LC 116/2003 subitem 17.01]",
+   "aviso": "Resposta da IA recusada pela trava de citação (afirmação sem fonte oficial); exibindo só as fontes.",
+   "latencia_s": null,
+   "tokens": null
+  },
+  {
+   "q": "Qual a alíquota de ISS em Maceió para serviços de contabilidade?",
+   "recall": true,
+   "modo": "fontes",
+   "contem": true,
+   "trava_aprovou": false,
+   "recusada": true,
+   "trava": {
+    "aprovado": false,
+    "afirmacoes": 2,
+    "sem_fonte": [
+     "2.0% (item 17.19 da LC 116)."
+    ],
+    "citacoes_desconhecidas": []
+   },
+   "texto_recusado": "2.0% (item 17.19 da LC 116).\n\nA alíquota de ISS para atividades de contabilidade no município de Maceió é de 2.0%, conforme o código 6920601 [ISS Maceió código 6920601 (LC 116 item 17.19)].\n\nFontes: [ISS Maceió código 6920601 (LC 116 item 17.19)]",
+   "aviso": "Resposta da IA recusada pela trava de citação (afirmação sem fonte oficial); exibindo só as fontes.",
+   "latencia_s": null,
+   "tokens": null
+  },
+  {
+   "q": "Advocacia está em qual subitem da LC 116?",
+   "recall": true,
+   "modo": "fontes",
+   "contem": true,
+   "trava_aprovou": false,
+   "recusada": true,
+   "trava": {
+    "aprovado": false,
+    "afirmacoes": 2,
+    "sem_fonte": [
+     "Subitem 17.14."
+    ],
+    "citacoes_desconhecidas": []
+   },
+   "texto_recusado": "Subitem 17.14.\n\nO serviço de advocacia está classificado no subitem 17.14 da Lei Complementar 116/2003 [LC 116/2003 subitem 17.14].\n\nFontes:\n[LC 116/2003 subitem 17.14]",
+   "aviso": "Resposta da IA recusada pela trava de citação (afirmação sem fonte oficial); exibindo só as fontes.",
+   "latencia_s": null,
+   "tokens": null
+  },
+  {
+   "q": "Ensino regular e cursos: qual item da LC 116?",
+   "recall": true,
+   "modo": "fontes",
+   "contem": true,
+   "trava_aprovou": false,
+   "recusada": true,
+   "trava": {
+    "aprovado": false,
+    "afirmacoes": 2,
+    "sem_fonte": [
+     "Subitem 8.01."
+    ],
+    "citacoes_desconhecidas": []
+   },
+   "texto_recusado": "Subitem 8.01.\n\nO ensino regular pré-escolar, fundamental e médio está classificado no subitem 8.01 da LC 116/2003 [LC 116/2003 subitem 8.01].\n\nFontes: [LC 116/2003 subitem 8.01]",
+   "aviso": "Resposta da IA recusada pela trava de citação (afirmação sem fonte oficial); exibindo só as fontes.",
+   "latencia_s": null,
+   "tokens": null
+  },
+  {
+   "q": "Hospedagem em hotel está na lista da LC 116? Qual subitem?",
+   "recall": true,
+   "modo": "fontes",
+   "contem": true,
+   "trava_aprovou": false,
+   "recusada": true,
+   "trava": {
+    "aprovado": false,
+    "afirmacoes": 2,
+    "sem_fonte": [
+     "O subitem é o 9.01.",
+     "O serviço de hospedagem em hotéis, hotelaria marítima e congêneres está classificado no subitem 9.01 da LC 116/2003, dentro do item 09 (Serviços relativos a hos"
+    ],
+    "citacoes_desconhecidas": []
+   },
+   "texto_recusado": "Sim, está na lista. O subitem é o 9.01.\n\nO serviço de hospedagem em hotéis, hotelaria marítima e congêneres está classificado no subitem 9.01 da LC 116/2003, dentro do item 09 (Serviços relativos a hospedagem, turismo, viagens e congêneres).\n\nFontes: [LC 116/2003 subitem 9.01], [LC 116/2003 item 09]",
+   "aviso": "Resposta da IA recusada pela trava de citação (afirmação sem fonte oficial); exibindo só as fontes.",
+   "latencia_s": null,
+   "tokens": null
+  },
+  {
+   "q": "Transporte municipal de passageiros: qual subitem da LC 116?",
+   "recall": true,
+   "modo": "fontes",
+   "contem": true,
+   "trava_aprovou": false,
+   "recusada": true,
+   "trava": {
+    "aprovado": false,
+    "afirmacoes": 2,
+    "sem_fonte": [
+     "Subitem 16.01 ou 16.02."
+    ],
+    "citacoes_desconhecidas": []
+   },
+   "texto_recusado": "Subitem 16.01 ou 16.02.\n\nO subitem 16.01 aplica-se especificamente ao transporte coletivo municipal rodoviário de passageiros [LC 116/2003 subitem 16.01], enquanto o subitem 16.02 abrange outros serviços de transporte de natureza municipal [LC 116/2003 subitem 16.02].\n\nFontes:\n[LC 116/2003 subitem 16.01]\n[LC 116/2003 subitem 16.02]",
+   "aviso": "Resposta da IA recusada pela trava de citação (afirmação sem fonte oficial); exibindo só as fontes.",
+   "latencia_s": null,
+   "tokens": null
+  },
+  {
+   "q": "Qual subitem da LC 116 cobre propaganda e publicidade?",
+   "recall": true,
+   "modo": "fontes",
+   "contem": true,
+   "trava_aprovou": false,
+   "recusada": true,
+   "trava": {
+    "aprovado": false,
+    "afirmacoes": 2,
+    "sem_fonte": [
+     "Subitem 17.06."
+    ],
+    "citacoes_desconhecidas": []
+   },
+   "texto_recusado": "Subitem 17.06.\n\nEste subitem abrange a propaganda e publicidade, incluindo o planejamento de campanhas, sistemas e a promoção de vendas [LC 116/2003 subitem 17.06].\n\nFontes: [LC 116/2003 subitem 17.06]",
+   "aviso": "Resposta da IA recusada pela trava de citação (afirmação sem fonte oficial); exibindo só as fontes.",
+   "latencia_s": null,
+   "tokens": null
+  },
+  {
+   "q": "Limpeza e conservação de imóveis: qual subitem da LC 116?",
+   "recall": true,
+   "modo": "fontes",
+   "contem": true,
+   "trava_aprovou": false,
+   "recusada": true,
+   "trava": {
+    "aprovado": false,
+    "afirmacoes": 1,
+    "sem_fonte": [
+     "Subitem 7.05."
+    ],
+    "citacoes_desconhecidas": []
+   },
+   "texto_recusado": "Subitem 7.05.\n\nA reparação, conservação e reforma de edifícios e congêneres estão enquadradas neste item, exceto quanto ao fornecimento de mercadorias [LC 116/2003 subitem 7.05].\n\nFontes:\n[LC 116/2003 subitem 7.05]",
+   "aviso": "Resposta da IA recusada pela trava de citação (afirmação sem fonte oficial); exibindo só as fontes.",
+   "latencia_s": null,
+   "tokens": null
+  },
+  {
+   "q": "Vigilância e segurança: qual subitem da LC 116?",
+   "recall": true,
+   "modo": "fontes",
+   "contem": true,
+   "trava_aprovou": false,
+   "recusada": true,
+   "trava": {
+    "aprovado": false,
+    "afirmacoes": 2,
+    "sem_fonte": [
+     "Subitem 11.02."
+    ],
+    "citacoes_desconhecidas": []
+   },
+   "texto_recusado": "Subitem 11.02.\n\nEste subitem abrange os serviços de vigilância, segurança ou monitoramento de bens, pessoas e semoventes [LC 116/2003 subitem 11.02]. Ele está inserido no item 11, que trata de serviços de guarda, estacionamento, armazenamento, vigilância e congêneres [LC 116/2003 item 11].\n\nFontes:\n[LC 116/2003 subitem 11.02]\n[LC 116/2003 item 11]",
+   "aviso": "Resposta da IA recusada pela trava de citação (afirmação sem fonte oficial); exibindo só as fontes.",
+   "latencia_s": null,
+   "tokens": null
+  },
+  {
+   "q": "Qual a lei que institui o Simples Nacional?",
+   "recall": true,
+   "modo": "llm-amd",
+   "contem": true,
+   "trava_aprovou": true,
+   "recusada": false,
+   "trava": {
+    "aprovado": true,
+    "afirmacoes": 1,
+    "sem_fonte": [],
+    "citacoes_desconhecidas": []
+   },
+   "texto_recusado": "",
+   "aviso": null,
+   "latencia_s": 3.97,
+   "tokens": 93
+  },
+  {
+   "q": "Qual lei complementar instituiu o IBS e a CBS na reforma tributária?",
+   "recall": true,
+   "modo": "fontes",
+   "contem": true,
+   "trava_aprovou": false,
+   "recusada": true,
+   "trava": {
+    "aprovado": false,
+    "afirmacoes": 1,
+    "sem_fonte": [
+     "Lei Complementar LC 214/2025."
+    ],
+    "citacoes_desconhecidas": []
+   },
+   "texto_recusado": "Lei Complementar LC 214/2025.\n\nEsta lei institui o IBS, a CBS e o Imposto Seletivo, definindo a incidência, o local da operação e as regras de imunidade e crédito [Lei Complementar LC 214/2025 (2025)].\n\nFontes:\n[Lei Complementar LC 214/2025 (2025)]",
+   "aviso": "Resposta da IA recusada pela trava de citação (afirmação sem fonte oficial); exibindo só as fontes.",
+   "latencia_s": null,
+   "tokens": null
+  },
+  {
+   "q": "Qual emenda constitucional aprovou a reforma tributária do consumo?",
+   "recall": true,
+   "modo": "llm-amd",
+   "contem": true,
+   "trava_aprovou": true,
+   "recusada": false,
+   "trava": {
+    "aprovado": true,
+    "afirmacoes": 0,
+    "sem_fonte": [],
+    "citacoes_desconhecidas": []
+   },
+   "texto_recusado": "",
+   "aviso": null,
+   "latencia_s": 3.42,
+   "tokens": 116
+  },
+  {
+   "q": "Qual a alíquota mínima de ISS permitida pela Constituição e pela LC 116?",
+   "recall": true,
+   "modo": "fontes",
+   "contem": true,
+   "trava_aprovou": false,
+   "recusada": true,
+   "trava": {
+    "aprovado": false,
+    "afirmacoes": 3,
+    "sem_fonte": [
+     "Alíquota mínima de 2%."
+    ],
+    "citacoes_desconhecidas": []
+   },
+   "texto_recusado": "Alíquota mínima de 2%.\n\nO Município não pode cobrar o ISS abaixo de 2%, com exceção dos serviços listados nos itens 7.02, 7.05 e 16.01 [Lei Complementar LC 157/2016 (2016)]. Esta norma veda a concessão de benefícios que reduzam a alíquota para patamar inferior ao mínimo estabelecido [Lei Complementar LC 157/2016 (2016)].\n\nFontes: [Lei Complementar LC 157/2016 (2016)]",
+   "aviso": "Resposta da IA recusada pela trava de citação (afirmação sem fonte oficial); exibindo só as fontes.",
+   "latencia_s": null,
+   "tokens": null
+  },
+  {
+   "q": "Onde o ISS é devido no caso de construção civil?",
+   "recall": true,
+   "modo": "llm-amd",
+   "contem": true,
+   "trava_aprovou": true,
+   "recusada": false,
+   "trava": {
+    "aprovado": true,
+    "afirmacoes": 0,
+    "sem_fonte": [],
+    "citacoes_desconhecidas": []
+   },
+   "texto_recusado": "",
+   "aviso": null,
+   "latencia_s": 2.87,
+   "tokens": 65
+  },
+  {
+   "q": "Serviços de informática importados do exterior pagam ISS?",
+   "recall": false,
+   "modo": "llm-amd",
+   "contem": true,
+   "trava_aprovou": true,
+   "recusada": false,
+   "trava": {
+    "aprovado": true,
+    "afirmacoes": 0,
+    "sem_fonte": [],
+    "citacoes_desconhecidas": []
+   },
+   "texto_recusado": "",
+   "aviso": null,
+   "latencia_s": 1.97,
+   "tokens": 14
+  },
+  {
+   "q": "Qual a alíquota de ISS em Maceió para serviços de engenharia?",
+   "recall": true,
+   "modo": "fontes",
+   "contem": true,
+   "trava_aprovou": false,
+   "recusada": true,
+   "trava": {
+    "aprovado": false,
+    "afirmacoes": 2,
+    "sem_fonte": [
+     "5.0%, item 7.01 da LC 116."
+    ],
+    "citacoes_desconhecidas": []
+   },
+   "texto_recusado": "5.0%, item 7.01 da LC 116.\n\nA alíquota para serviços de engenharia em Maceió é de 5.0%, conforme o código 7112000 [ISS Maceió código 7112000 (LC 116 item 7.01)].\n\nFontes: [ISS Maceió código 7112000 (LC 116 item 7.01)]",
+   "aviso": "Resposta da IA recusada pela trava de citação (afirmação sem fonte oficial); exibindo só as fontes.",
+   "latencia_s": null,
+   "tokens": null
+  },
+  {
+   "q": "Clínica de estética: qual subitem da LC 116 e alíquota em Maceió?",
+   "recall": true,
+   "modo": "fontes",
+   "contem": true,
+   "trava_aprovou": false,
+   "recusada": true,
+   "trava": {
+    "aprovado": false,
+    "afirmacoes": 2,
+    "sem_fonte": [
+     "Subitem 6.02 da LC 116, alíquota de 5.0%."
+    ],
+    "citacoes_desconhecidas": []
+   },
+   "texto_recusado": "Subitem 6.02 da LC 116, alíquota de 5.0%.\n\nAs atividades de estética e outros serviços de cuidados com a beleza em Maceió estão enquadradas no código 9602502 [ISS Maceió código 9602502 (LC 116 item 6.02)].\n\nFontes:\n[ISS Maceió código 9602502 (LC 116 item 6.02)]",
+   "aviso": "Resposta da IA recusada pela trava de citação (afirmação sem fonte oficial); exibindo só as fontes.",
+   "latencia_s": null,
+   "tokens": null
+  },
+  {
+   "q": "Qual o prazo e a base legal da retenção de ISS pelo tomador?",
+   "recall": true,
+   "modo": "fontes",
+   "contem": true,
+   "trava_aprovou": false,
+   "recusada": true,
+   "trava": {
+    "aprovado": false,
+    "afirmacoes": 3,
+    "sem_fonte": [
+     "A base legal para a retenção de ISS pelo tomador é o art. 6º da LC 116/2003 e os arts. 5º a 15 do Decreto 53.151/2012 (RISS — São Paulo/SP).",
+     "A LC 116/2003 define a responsabilidade/retenção pelo tomador no art. 6º, especificando no §2º, II, a responsabilidade do tomador PJ para itens específicos (com",
+     "No município de São Paulo, a retenção é regulamentada pelos arts. 5º a 15 do Decreto 53.151/2012, incluindo a retenção de prestadores de fora de SP sem cadastro"
+    ],
+    "citacoes_desconhecidas": []
+   },
+   "texto_recusado": "A base legal para a retenção de ISS pelo tomador é o art. 6º da LC 116/2003 e os arts. 5º a 15 do Decreto 53.151/2012 (RISS — São Paulo/SP). A LC 116/2003 define a responsabilidade/retenção pelo tomador no art. 6º, especificando no §2º, II, a responsabilidade do tomador PJ para itens específicos (como 3.05, 7.02, entre outros). No município de São Paulo, a retenção é regulamentada pelos arts. 5º a 15 do Decreto 53.151/2012, incluindo a retenção de prestadores de fora de SP sem cadastro no CPOM (art. 10).\n\nA base consultada não cobre a pergunta sobre o prazo da retenção.\n\nFontes: [Lei Complementar LC 116/2003 (2003)], [Decreto Decreto 53.151/2012 (RISS — São Paulo/SP) (2012)]",
+   "aviso": "Resposta da IA recusada pela trava de citação (afirmação sem fonte oficial); exibindo só as fontes.",
+   "latencia_s": null,
+   "tokens": null
+  }
+ ]
+}
