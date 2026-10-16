@@ -38,6 +38,25 @@ class Trava(unittest.TestCase):
         self.assertTrue(fa.trava_citacao("Confira com o seu contador.", T)["aprovado"])
 
 
+class TravaFormatoGemma(unittest.TestCase):
+    """Casos reais da avaliação na AMD (Gemma-4-31B-IT)."""
+    T = ["ISS Maceió código 0102010 (LC 116 item 1.02)", "LC 116/2003 (2003)"]
+
+    def test_resumo_coberto_pela_frase_citada(self):
+        t = "2.0%, item 1.02 da LC 116.\n\nA alíquota é 2.0% sob o código 0102010 [ISS Maceió código 0102010 (LC 116 item 1.02)]."
+        self.assertTrue(fa.trava_citacao(t, self.T)["aprovado"])
+
+    def test_resumo_com_numero_diferente_recusado(self):
+        t = "5%, item 1.02.\n\nA alíquota é 2% [ISS Maceió código 0102010 (LC 116 item 1.02)]."
+        self.assertFalse(fa.trava_citacao(t, self.T)["aprovado"])
+
+    def test_citacao_com_artigo(self):
+        self.assertTrue(fa.trava_citacao("O ISS não incide na exportação [LC 116/2003 (2003) art. 2º, I].", self.T)["aprovado"])
+
+    def test_titulo_parecido_recusado(self):
+        self.assertFalse(fa.trava_citacao("Alíquota de 2% [LC 116/2003 (2003)X].", self.T)["aprovado"])
+
+
 class Modo(unittest.TestCase):
     def setUp(self):
         ev.ask_local("aquecer índice")  # sobe o servidor local de arquivos e carrega o corpus

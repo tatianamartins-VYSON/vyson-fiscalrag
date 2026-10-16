@@ -1,5 +1,5 @@
 name: avaliacao-amd
-# rodada 3: guarda também o aviso do site
+# rodada 4: trava ajustada ao formato do Gemma (resumo coberto e citação com artigo)
 # Roda as 30 perguntas congeladas contra o site no ar (modelo aberto na AMD) e salva o relatório no repositório.
 on:
   workflow_dispatch:

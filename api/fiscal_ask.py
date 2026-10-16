@@ -237,22 +237,32 @@ _AFIRMA = re.compile(r"\d+(?:[,.]\d+)?\s*%|\bart(?:igo)?\.?\s*\d|\bsubitem\b|\bc
 
 
 def trava_citacao(texto: str, titulos: list[str]) -> dict:
-    """Trava determinística: toda frase que afirma alíquota, artigo, código ou lei precisa citar,
-    entre colchetes, o título exato de um trecho recuperado. Título desconhecido também reprova.
-    Confere cobertura e validade das citações; não garante que a conclusão esteja certa."""
-    conhecidos = set(titulos)
-    unidades, sem_fonte, desconhecidas = 0, [], []
+    """Trava determinística: toda frase que afirma alíquota, artigo, código ou lei precisa citar, entre colchetes,
+    um trecho recuperado (o título exato, podendo vir seguido do artigo: "[LC 116/2003 (2003) art. 2º, I]").
+    Uma frase-resumo sem colchetes só passa se todos os seus números e códigos aparecem numa frase citada da
+    mesma resposta. Citação que não começa por um título recuperado reprova. Confere cobertura e validade das
+    citações; não garante que a conclusão esteja certa."""
+    conhecidos = sorted(set(titulos), key=len, reverse=True)
+    valida = lambda c: any(c == t or c.startswith(t + " ") or c.startswith(t + ",") for t in conhecidos)
+    numeros = lambda f: set(re.findall(r"\d+(?:[.,]\d+)*", _CITA.sub("", f)))
+    frases = []
     for linha in (texto or "").splitlines():
         ln = linha.strip().lstrip("-*• ").strip()
         if not ln or ln.lower().startswith("fontes") or ln.startswith("#"):
             continue
         for frase in re.split(r"(?<=[.!?])\s+(?=[A-ZÁÉÍÓÚÂÊÔÃÕÇ])", ln):
-            cit = _CITA.findall(frase)
-            desconhecidas += [c for c in cit if c not in conhecidos]
-            if _AFIRMA.search(_CITA.sub("", frase)):
-                unidades += 1
-                if not any(c in conhecidos for c in cit + _CITA.findall(ln)):  # a citação pode vir no fim da mesma linha
-                    sem_fonte.append(frase[:160])
+            frases.append((frase, _CITA.findall(frase) + [c for c in _CITA.findall(ln) if c not in _CITA.findall(frase)]))
+    citado = set()
+    for frase, cit in frases:
+        if any(valida(c) for c in cit):  # números da frase citada e dos títulos das fontes que ela cita
+            citado |= numeros(frase) | {n for c in cit if valida(c) for n in numeros(c)}
+    unidades, sem_fonte, desconhecidas = 0, [], []
+    for frase, cit in frases:
+        desconhecidas += [c for c in _CITA.findall(frase) if not valida(c)]
+        if _AFIRMA.search(_CITA.sub("", frase)):
+            unidades += 1
+            if not any(valida(c) for c in cit) and not (numeros(frase) and numeros(frase) <= citado):
+                sem_fonte.append(frase[:160])
     return {"aprovado": not sem_fonte and not desconhecidas, "afirmacoes": unidades,
             "sem_fonte": sem_fonte, "citacoes_desconhecidas": sorted(set(desconhecidas))}
 
